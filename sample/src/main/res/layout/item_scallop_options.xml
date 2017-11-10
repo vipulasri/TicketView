@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatTextView
+        style="@style/Heading"
+        android:text="@string/scallop" />
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="5dp"
+       android:gravity="center_vertical"
+       android:orientation="horizontal">
+
+       <android.support.v7.widget.AppCompatTextView
+           style="@style/Label"
+           android:text="@string/radius" />
+
+       <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+           style="@style/DiscreteSeekBar"
+           android:id="@+id/seekBar_scallop_radius"
+           app:dsb_min="0"
+           app:dsb_max="40"
+           app:dsb_value="10"/>
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/Label"
+            android:text="@string/position_percent" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_scallop_position"
+            android:spinnerMode="dropdown"
+            android:entries="@array/scallop_position"/>
+
+    </LinearLayout>
+
+</LinearLayout>
