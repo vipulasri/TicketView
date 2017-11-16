@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_main">
 
     <com.vipulasri.ticketview.TicketView
-        app:orientation="horizontal"
+        app:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="60dp"
@@ -19,7 +19,7 @@
         android:id="@+id/ticketView"
         app:scallopRadius="10dp"
         app:showBorder="false"
-        app:scallopPositionPercent="50"
+        app:scallopPositionPercent="30"
         app:showDivider="true"
         app:dividerType="dash"/>
 

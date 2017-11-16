@@ -22,6 +22,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.CompoundButton
 import kotlinx.android.synthetic.main.bottomsheet_ticket_attributes.*
+import kotlinx.android.synthetic.main.item_corner_options.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -152,6 +153,29 @@ class MainActivity : AppCompatActivity() {
         seekBar_divider_dash_gap.progress = Utils.pxToDp(ticketView.dividerDashGap.toFloat(), this)
         seekBar_divider_dash_gap.setOnProgressChangeListener(progressChangeListener)
 
+        //corner properties
+
+        spinner_corner_type.setSelection(0)
+        spinner_corner_type.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                when (selectedItem) {
+                    "Normal" -> ticketView.cornerType = TicketView.CornerType.NORMAL
+                    "Rounded" -> ticketView.cornerType = TicketView.CornerType.ROUNDED
+                    else -> {
+                        ticketView.cornerType = TicketView.CornerType.NORMAL
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+        }
+
+        seekBar_corner_radius.progress = Utils.pxToDp(ticketView.cornerRadius.toFloat(), this)
+        seekBar_corner_radius.setOnProgressChangeListener(progressChangeListener)
+
     }
 
     private fun showColorPicker(selectedColor : Int, colorView: ImageView) {
@@ -182,13 +206,14 @@ class MainActivity : AppCompatActivity() {
         override fun onProgressChanged(discreteSeekBar: DiscreteSeekBar, value: Int, b: Boolean) {
 
             val valueInDp = Utils.dpToPx(value.toFloat(), this@MainActivity)
-            Log.e("TAG", "->"+discreteSeekBar.id)
+            Log.d("TAG", "->"+discreteSeekBar.id)
             when(discreteSeekBar.id) {
                 R.id.seekBar_border_width -> ticketView.borderWidth = valueInDp
                 R.id.seekBar_scallop_radius -> ticketView.scallopRadius = valueInDp
                 R.id.seekBar_divider_width -> ticketView.dividerWidth = valueInDp
                 R.id.seekBar_divider_dash_length -> ticketView.dividerDashLength = valueInDp
                 R.id.seekBar_divider_dash_gap -> ticketView.dividerDashGap = valueInDp
+                R.id.seekBar_corner_radius -> ticketView.cornerRadius = valueInDp
             }
         }
 

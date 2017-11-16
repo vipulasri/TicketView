@@ -127,6 +127,12 @@
 
             <include layout="@layout/item_divider_options"/>
 
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include layout="@layout/item_corner_options"/>
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

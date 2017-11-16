@@ -3,10 +3,10 @@
 buildscript {
     ext.versions = [
             'compileSdk'    : 27,
-            'buildTools'    : '27.0.0',
+            'buildTools'    : '27.0.1',
             'minSdk'        : 15,
             'targetSdk'     : 27,
-            'supportLibrary': '27.0.0',
+            'supportLibrary': '27.0.1',
             'butterknife'   : '8.8.1',
             'kotlin'        : '1.1.51'
     ]
@@ -21,9 +21,6 @@ buildscript {
 
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 

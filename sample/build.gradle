@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.dmitrymalkovich.android:material-design-dimens:1.4'
     implementation 'org.adw.library:discrete-seekbar:1.0.1'
     implementation project(":ticketview")
+    //implementation 'com.vipulasri:ticketview:1.0'
 }
 repositories {
     mavenCentral()

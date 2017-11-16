@@ -8,12 +8,10 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -39,12 +37,20 @@ public class TicketView extends View {
         int DASH = 1;
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({ CornerType.NORMAL, CornerType.ROUNDED })
+    public @interface CornerType {
+        int NORMAL = 0;
+        int ROUNDED = 1;
+    }
+
     private Paint mBackgroundPaint = new Paint();
     private Paint mBorderPaint = new Paint();
     private Paint mDividerPaint = new Paint();
     private int mOrientation;
     private Path mPath = new Path();
     private RectF mRect = new RectF();
+    private RectF mRoundedCornerArc = new RectF();
     private int mScallopHeight;
     private float mScallopPosition;
     private float mScallopPositionPercent;
@@ -59,6 +65,8 @@ public class TicketView extends View {
     private int mDividerType;
     private int mDividerWidth;
     private int mDividerColor;
+    private int mCornerType;
+    private int mCornerRadius;
 
     public TicketView(Context context) {
         super(context);
@@ -86,25 +94,75 @@ public class TicketView extends View {
         mPath.reset();
         if (mOrientation == Orientation.HORIZONTAL) {
             offset = (float) (((top + bottom) / mScallopPosition) - mScallopRadius);
-            mPath.moveTo((float) left, (float) top);
-            mPath.lineTo((float) right, (float) top);
+
+            if(mCornerType == CornerType.ROUNDED) {
+                mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
+                mPath.lineTo((float) left + mCornerRadius, (float) top);
+
+                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
+            } else {
+                mPath.lineTo((float) left, (float) top);
+                mPath.lineTo((float) right, (float) top);
+            }
+
             mRect.set((float) (right - mScallopRadius), ((float) top) + offset, (float) (right + mScallopRadius), (((float) mScallopHeight) + offset) + ((float) top));
             mPath.arcTo(mRect, 270, -180.0f, false);
-            mPath.lineTo((float) right, (float) bottom);
-            mPath.lineTo((float) left, (float) bottom);
+
+            if(mCornerType == CornerType.ROUNDED) {
+
+                mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
+                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+
+                mPath.lineTo((float) left + mCornerRadius, (float) bottom);
+                mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
+
+            } else {
+                mPath.lineTo((float) right, (float) bottom);
+                mPath.lineTo((float) left, (float) bottom);
+            }
+
             mRect.set((float) (left - mScallopRadius), ((float) top) + offset, (float) (left + mScallopRadius), (((float) mScallopHeight) + offset) + ((float) top));
             mPath.arcTo(mRect, 90.0f, -180.0f, false);
             mPath.close();
         } else {
             offset = (float) (((right + left) / mScallopPosition) - mScallopRadius);
-            mPath.moveTo((float) left, (float) top);
+
+            if(mCornerType == CornerType.ROUNDED) {
+                mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
+                mPath.lineTo((float) left + mCornerRadius, (float) top);
+            } else {
+                mPath.lineTo((float) left, (float) top);
+            }
+
             mRect.set(((float) left) + offset, (float) (top - mScallopRadius), (((float) mScallopHeight) + offset) + ((float) left), (float) (top + mScallopRadius));
             mPath.arcTo(mRect, 180.0f, -180.0f, false);
-            mPath.lineTo((float) right, (float) top);
-            mPath.lineTo((float) right, (float) bottom);
+
+            if(mCornerType == CornerType.ROUNDED) {
+
+                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
+
+                mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
+                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+
+            } else {
+                mPath.lineTo((float) right, (float) top);
+                mPath.lineTo((float) right, (float) bottom);
+            }
+
             mRect.set(((float) left) + offset, (float) (bottom - mScallopRadius), (((float) mScallopHeight) + offset) + ((float) left), (float) (bottom + mScallopRadius));
             mPath.arcTo(mRect, 0.0f, -180.0f, false);
-            mPath.lineTo((float) left, (float) bottom);
+
+            if(mCornerType == CornerType.ROUNDED) {
+
+                mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
+                mPath.lineTo((float) left, (float) bottom - mCornerRadius);
+
+            } else {
+                mPath.lineTo((float) left, (float) bottom);
+            }
+
             mPath.close();
         }
 
@@ -142,6 +200,8 @@ public class TicketView extends View {
             mDividerColor = typedArray.getColor(R.styleable.TicketView_dividerColor, getResources().getColor(android.R.color.darker_gray));
             mDividerDashLength = typedArray.getDimensionPixelSize(R.styleable.TicketView_dividerDashLength, Utils.dpToPx(8f, getContext()));
             mDividerDashGap = typedArray.getDimensionPixelSize(R.styleable.TicketView_dividerDashGap, Utils.dpToPx(4f, getContext()));
+            mCornerType = typedArray.getInt(R.styleable.TicketView_cornerType, CornerType.NORMAL);
+            mCornerRadius = typedArray.getDimensionPixelSize(R.styleable.TicketView_cornerRadius, Utils.dpToPx(4f, getContext()));
 
             typedArray.recycle();
         }
@@ -194,6 +254,26 @@ public class TicketView extends View {
         else
             mDividerPaint.setPathEffect(new PathEffect());
 
+    }
+
+    private RectF getTopLeftCornerRoundedArc(int top, int left){
+        mRoundedCornerArc.set((float) left, (float) top , (float) left + mCornerRadius * 2, (float) top + mCornerRadius * 2);
+        return mRoundedCornerArc;
+    }
+
+    private RectF getTopRightCornerRoundedArc(int top, int right){
+        mRoundedCornerArc.set(((float) right) - mCornerRadius * 2, (float) top, ((float) right), (float) (top + mCornerRadius * 2));
+        return mRoundedCornerArc;
+    }
+
+    private RectF getBottomLeftCornerRoundedArc(int left, int bottom){
+        mRoundedCornerArc.set(((float) left), (float) bottom - mCornerRadius * 2 , (float) left + mCornerRadius * 2, (float) bottom);
+        return mRoundedCornerArc;
+    }
+
+    private RectF getBottomRightCornerRoundedArc(int bottom, int right){
+        mRoundedCornerArc.set(((float) right) - mCornerRadius * 2, (float) bottom - mCornerRadius * 2 , ((float) right), (float) bottom);
+        return mRoundedCornerArc;
     }
 
     public int getOrientation() {
@@ -310,6 +390,24 @@ public class TicketView extends View {
 
     public void setDividerColor(int dividerColor) {
         this.mDividerColor = dividerColor;
+        initElements();
+    }
+
+    public int getCornerType() {
+        return mCornerType;
+    }
+
+    public void setCornerType(int cornerType) {
+        this.mCornerType = cornerType;
+        initElements();
+    }
+
+    public int getCornerRadius() {
+        return mCornerRadius;
+    }
+
+    public void setCornerRadius(int cornerRadius) {
+        this.mCornerRadius = cornerRadius;
         initElements();
     }
 }

@@ -21,6 +21,11 @@
         </attr>
         <attr name="dividerDashGap" format="dimension"/>
         <attr name="dividerDashLength" format="dimension"/>
+        <attr name="cornerType" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="rounded" value="1"/>
+        </attr>
+        <attr name="cornerRadius" format="dimension"/>
     </declare-styleable>
 
 </resources>
