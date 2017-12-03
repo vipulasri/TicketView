@@ -52,13 +52,13 @@ If you Watch this repository, GitHub will send you an email every time I publish
 
 ``` java
 <com.vipulasri.ticketview.TicketView
-        app:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/ticketView"
+        app:orientation="vertical"
         app:scallopRadius="10dp"
         app:showBorder="false"
         app:scallopPositionPercent="50"
@@ -72,6 +72,11 @@ If you Watch this repository, GitHub will send you an email every time I publish
     <th>Attribute Name</th>
     <th>Default Value</th>
     <th>Description</th>
+    <tr>
+        <td>app:orientation="vertical"</td>
+        <td>horizontal</td>
+        <td>sets orientation of divider and scallop</td>
+    </tr>
     <tr>
         <td>app:backgroundColor="@android:color/black"</td>
         <td>white</td>
