@@ -3,8 +3,12 @@
 An Android Library used to implement TicketView in android 
 
 ### Specs
-[![Download](https://api.bintray.com/packages/vipulasri/maven/TicketView/images/download.svg)](https://bintray.com/vipulasri/maven/TimelineView/_latestVersion)
+[![Download](https://api.bintray.com/packages/vipulasri/maven/TicketView/images/download.svg)](https://bintray.com/vipulasri/maven/TicketView/_latestVersion)
+[![MethodsCount](https://img.shields.io/badge/Methods%20and%20size-98%20|%2010KB-e91e63.svg)](http://www.methodscount.com/?lib=com.vipulasri%3Aticketview%3A1.0.2)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/vipulasri/Timeline-View/blob/master/LICENSE)
+
+### Badges/Featured In
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Ticket%20View-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6521)
 
 ![showcase](https://github.com/vipulasri/TicketView/blob/master/art/showcase.png)
 
