@@ -6,6 +6,7 @@ An Android Library used to implement TicketView in android
 [![Download](https://api.bintray.com/packages/vipulasri/maven/TicketView/images/download.svg)](https://bintray.com/vipulasri/maven/TimelineView/_latestVersion)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/vipulasri/Timeline-View/blob/master/LICENSE)
 
+![showcase](https://github.com/vipulasri/TicketView/blob/master/art/showcase.png)
 
 ## Sample Project
 
