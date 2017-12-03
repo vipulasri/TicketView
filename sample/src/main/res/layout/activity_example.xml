@@ -42,13 +42,7 @@
             app:borderColor="@color/colorAccent"
             app:showDivider="true"
             app:dividerType="dash"
-            app:dividerColor="@color/colorAccent"
-            app:dividerWidth="2dp"
-            app:dividerDashGap="4dp"
-            app:dividerDashLength="5dp"
-            app:cornerType="rounded"
-            app:cornerRadius="10dp"
-            app:backgroundColor="3sp" />
+            app:cornerType="rounded"/>
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
