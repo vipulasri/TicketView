@@ -24,6 +24,7 @@
         <attr name="cornerType" format="enum">
             <enum name="normal" value="0"/>
             <enum name="rounded" value="1"/>
+            <enum name="scallop" value="2"/>
         </attr>
         <attr name="cornerRadius" format="dimension"/>
     </declare-styleable>

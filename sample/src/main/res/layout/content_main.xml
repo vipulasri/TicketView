@@ -3,11 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_blue_50"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.vipulasri.ticketview.sample.MainActivity"
-    tools:showIn="@layout/activity_main">
+    android:background="@color/colorBackground"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <com.vipulasri.ticketview.TicketView
         app:orientation="vertical"
@@ -19,7 +16,7 @@
         android:id="@+id/ticketView"
         app:scallopRadius="10dp"
         app:showBorder="false"
-        app:scallopPositionPercent="30"
+        app:scallopPositionPercent="50"
         app:showDivider="true"
         app:dividerType="dash"/>
 

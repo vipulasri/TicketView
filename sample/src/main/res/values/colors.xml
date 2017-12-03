@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#E71844 </color>
+    <color name="colorPrimaryDark">#DE1B42</color>
+    <color name="colorAccent">#FFC857</color>
+
+    <color name="colorBackground">#1FE71844</color>
 
     <array name="colors">
         <item>@color/material_red_500</item>

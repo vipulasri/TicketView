@@ -24,12 +24,13 @@
     <string name="movie_genre">Adventure, Fantasy, Action</string>
     <string name="movie_ticket_number">400&#8211;2000&#8211;2020</string>
     <string name="date">Date</string>
-    <string name="movie_date">1&#8531;3&#8531;2017</string>
+    <string name="movie_date">01&#8211;03&#8211;2017</string>
     <string name="time">Time</string>
     <string name="movie_time">23:30</string>
     <string name="seat">Seat</string>
     <string name="movie_seat">C5-C8</string>
     <string name="corners">Corners</string>
+    <string name="example">Example</string>
 
     <string-array name="divider_type">
         <item>Normal</item>
@@ -52,6 +53,7 @@
     <string-array name="corner_type">
         <item>Normal</item>
         <item>Rounded</item>
+        <item>Scallop</item>
     </string-array>
 
 </resources>

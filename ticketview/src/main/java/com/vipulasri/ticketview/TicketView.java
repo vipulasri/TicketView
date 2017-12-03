@@ -19,6 +19,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Created by Vipul Asri on 31/10/17.
  */
+
 public class TicketView extends View {
 
     public static final String TAG = TicketView.class.getSimpleName();
@@ -42,6 +43,7 @@ public class TicketView extends View {
     public @interface CornerType {
         int NORMAL = 0;
         int ROUNDED = 1;
+        int SCALLOP = 2;
     }
 
     private Paint mBackgroundPaint = new Paint();
@@ -51,6 +53,7 @@ public class TicketView extends View {
     private Path mPath = new Path();
     private RectF mRect = new RectF();
     private RectF mRoundedCornerArc = new RectF();
+    private RectF mScallopCornerArc = new RectF();
     private int mScallopHeight;
     private float mScallopPosition;
     private float mScallopPositionPercent;
@@ -92,6 +95,7 @@ public class TicketView extends View {
         int top = getPaddingTop();
         int bottom = getHeight() - getPaddingBottom();
         mPath.reset();
+
         if (mOrientation == Orientation.HORIZONTAL) {
             offset = (float) (((top + bottom) / mScallopPosition) - mScallopRadius);
 
@@ -101,6 +105,14 @@ public class TicketView extends View {
 
                 mPath.lineTo((float) right - mCornerRadius, (float) top);
                 mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
+
+            } else  if(mCornerType == CornerType.SCALLOP) {
+                mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
+                mPath.lineTo((float) left + mCornerRadius, (float) top);
+
+                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
+
             } else {
                 mPath.lineTo((float) left, (float) top);
                 mPath.lineTo((float) right, (float) top);
@@ -117,6 +129,14 @@ public class TicketView extends View {
                 mPath.lineTo((float) left + mCornerRadius, (float) bottom);
                 mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
 
+            } else if(mCornerType == CornerType.SCALLOP) {
+
+                mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
+                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+
+                mPath.lineTo((float) left + mCornerRadius, (float) bottom);
+                mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
+
             } else {
                 mPath.lineTo((float) right, (float) bottom);
                 mPath.lineTo((float) left, (float) bottom);
@@ -125,12 +145,19 @@ public class TicketView extends View {
             mRect.set((float) (left - mScallopRadius), ((float) top) + offset, (float) (left + mScallopRadius), (((float) mScallopHeight) + offset) + ((float) top));
             mPath.arcTo(mRect, 90.0f, -180.0f, false);
             mPath.close();
+
         } else {
             offset = (float) (((right + left) / mScallopPosition) - mScallopRadius);
 
             if(mCornerType == CornerType.ROUNDED) {
                 mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
                 mPath.lineTo((float) left + mCornerRadius, (float) top);
+
+            } else if(mCornerType == CornerType.SCALLOP) {
+
+                mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
+                mPath.lineTo((float) left + mCornerRadius, (float) top);
+
             } else {
                 mPath.lineTo((float) left, (float) top);
             }
@@ -146,6 +173,14 @@ public class TicketView extends View {
                 mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
                 mPath.lineTo((float) right - mCornerRadius, (float) bottom);
 
+            } else if(mCornerType == CornerType.SCALLOP) {
+
+                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
+
+                mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
+                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+
             } else {
                 mPath.lineTo((float) right, (float) top);
                 mPath.lineTo((float) right, (float) bottom);
@@ -158,6 +193,11 @@ public class TicketView extends View {
 
                 mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
                 mPath.lineTo((float) left, (float) bottom - mCornerRadius);
+
+            } else if(mCornerType == CornerType.SCALLOP) {
+
+                mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
+                mPath.lineTo((float) left - mCornerRadius, (float) bottom - mCornerRadius);
 
             } else {
                 mPath.lineTo((float) left, (float) bottom);
@@ -274,6 +314,26 @@ public class TicketView extends View {
     private RectF getBottomRightCornerRoundedArc(int bottom, int right){
         mRoundedCornerArc.set(((float) right) - mCornerRadius * 2, (float) bottom - mCornerRadius * 2 , ((float) right), (float) bottom);
         return mRoundedCornerArc;
+    }
+
+    private RectF getTopLeftCornerScallopArc(int top, int left){
+        mScallopCornerArc.set((float) (left - mCornerRadius), (float) (top - mCornerRadius) , (float) (left + mCornerRadius), (float) (top + mCornerRadius));
+        return mScallopCornerArc;
+    }
+
+    private RectF getTopRightCornerScallopArc(int top, int right){
+        mScallopCornerArc.set((float) (right - mCornerRadius), (float) (top - mCornerRadius), (float) (right + mCornerRadius), (float) (top + mCornerRadius));
+        return mScallopCornerArc;
+    }
+
+    private RectF getBottomLeftCornerScallopArc(int left, int bottom){
+        mScallopCornerArc.set(((float) left - mCornerRadius), (float) (bottom - mCornerRadius) , (float) (left + mCornerRadius), (float) (bottom + mCornerRadius));
+        return mScallopCornerArc;
+    }
+
+    private RectF getBottomRightCornerScallopArc(int bottom, int right){
+        mScallopCornerArc.set((float) (right - mCornerRadius), (float) (bottom - mCornerRadius) , (float) (right + mCornerRadius), (float) (bottom + mCornerRadius));
+        return mScallopCornerArc;
     }
 
     public int getOrientation() {

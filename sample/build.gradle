@@ -36,8 +36,10 @@ dependencies {
     }
     implementation 'com.dmitrymalkovich.android:material-design-dimens:1.4'
     implementation 'org.adw.library:discrete-seekbar:1.0.1'
+    implementation "com.jakewharton:butterknife:$versions.butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknife"
     implementation project(":ticketview")
-    //implementation 'com.vipulasri:ticketview:1.0'
+    //implementation 'com.vipulasri:ticketview:1.0.2'
 }
 repositories {
     mavenCentral()

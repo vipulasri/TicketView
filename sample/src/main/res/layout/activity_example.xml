@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_grey_300"
+    android:background="@color/colorBackground"
     tools:context="com.vipulasri.ticketview.sample.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -36,10 +36,19 @@
             android:layout_height="match_parent"
             android:id="@+id/ticketView"
             app:scallopRadius="10dp"
-            app:showBorder="false"
             app:scallopPositionPercent="60"
+            app:showBorder="false"
+            app:borderWidth="1dp"
+            app:borderColor="@color/colorAccent"
             app:showDivider="true"
-            app:dividerType="dash"/>
+            app:dividerType="dash"
+            app:dividerColor="@color/colorAccent"
+            app:dividerWidth="2dp"
+            app:dividerDashGap="4dp"
+            app:dividerDashLength="5dp"
+            app:cornerType="rounded"
+            app:cornerRadius="10dp"
+            app:backgroundColor="3sp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -174,7 +183,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@color/material_grey_50"/>
+                    android:background="@color/material_grey_300"/>
 
                 <LinearLayout
                     android:layout_width="0dp"

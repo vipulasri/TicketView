@@ -1,5 +1,6 @@
 package com.vipulasri.ticketview.sample
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,8 @@ import com.thebluealliance.spectrum.SpectrumDialog
 import android.graphics.PorterDuff
 import android.support.annotation.NonNull
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.item_border_options.*
@@ -25,15 +28,31 @@ import kotlinx.android.synthetic.main.bottomsheet_ticket_attributes.*
 import kotlinx.android.synthetic.main.item_corner_options.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(toolbar)
         initOptionsBottomSheet()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+
+            R.id.action_example -> {
+                startActivity(Intent(this, ExampleActivity::class.java))
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun initOptionsBottomSheet() {
         val behavior = BottomSheetBehavior.from<View>(bottomSheet)
@@ -162,6 +181,7 @@ class MainActivity : AppCompatActivity() {
                 when (selectedItem) {
                     "Normal" -> ticketView.cornerType = TicketView.CornerType.NORMAL
                     "Rounded" -> ticketView.cornerType = TicketView.CornerType.ROUNDED
+                    "Scallop" -> ticketView.cornerType = TicketView.CornerType.SCALLOP
                     else -> {
                         ticketView.cornerType = TicketView.CornerType.NORMAL
                     }
