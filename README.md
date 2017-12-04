@@ -1,6 +1,6 @@
 # TicketView
 
-An Android Library used to implement TicketView in android 
+An Android Library used to implement TicketView in android with normal, rounded and scallop corners.
 
 ### Specs
 [![Download](https://api.bintray.com/packages/vipulasri/maven/TicketView/images/download.svg)](https://bintray.com/vipulasri/maven/TicketView/_latestVersion)
