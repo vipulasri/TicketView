@@ -9,6 +9,7 @@ An Android Library used to implement TicketView in android with normal, rounded 
 
 ### Badges/Featured In
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Ticket%20View-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6521)
+[![AndroidDev Digest](https://img.shields.io/badge/AndroidDev%20Digest-%23171-blue.svg)](https://www.androiddevdigest.com/digest-171/) 
 
 ![showcase](https://github.com/vipulasri/TicketView/blob/master/art/showcase.png)
 
