@@ -2,12 +2,18 @@ package com.vipulasri.ticketview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,6 +21,12 @@ import android.view.View;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import static android.graphics.Bitmap.Config.ALPHA_8;
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.TRANSPARENT;
+import static android.graphics.Paint.ANTI_ALIAS_FLAG;
+import static android.graphics.PorterDuff.Mode.SRC_IN;
 
 /**
  * Created by Vipul Asri on 31/10/17.
@@ -72,6 +84,9 @@ public class TicketView extends View {
     private int mDividerColor;
     private int mCornerType;
     private int mCornerRadius;
+    private Bitmap mShadow;
+    private final Paint mShadowPaint = new Paint(ANTI_ALIAS_FLAG);
+    private float mShadowBlurRadius = 0f;
 
     public TicketView(Context context) {
         super(context);
@@ -94,6 +109,9 @@ public class TicketView extends View {
         if (mDirty) {
             doLayout();
         }
+        if (mShadowBlurRadius > 0f) {
+            canvas.drawBitmap(mShadow, 0f, mShadowBlurRadius / 2f, null);
+        }
         canvas.drawPath(mPath, mBackgroundPaint);
         if (mShowBorder) {
             canvas.drawPath(mPath, mBorderPaint);
@@ -105,59 +123,59 @@ public class TicketView extends View {
 
     private void doLayout() {
         float offset;
-        int left = getPaddingLeft();
-        int right = getWidth() - getPaddingRight();
-        int top = getPaddingTop();
-        int bottom = getHeight() - getPaddingBottom();
+        float left = getPaddingLeft() + mShadowBlurRadius;
+        float right = getWidth() - getPaddingRight() - mShadowBlurRadius;
+        float top = getPaddingTop() + (mShadowBlurRadius / 2);
+        float bottom = getHeight() - getPaddingBottom() - mShadowBlurRadius - (mShadowBlurRadius / 2);
         mPath.reset();
 
         if (mOrientation == Orientation.HORIZONTAL) {
-            offset = (((top + bottom) / mScallopPosition) - mScallopRadius);
+            offset = ((top + bottom) / mScallopPosition) - mScallopRadius;
 
             if(mCornerType == CornerType.ROUNDED) {
                 mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
-                mPath.lineTo((float) left + mCornerRadius, (float) top);
+                mPath.lineTo(left + mCornerRadius, top);
 
-                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.lineTo(right - mCornerRadius, top);
                 mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
 
             } else  if(mCornerType == CornerType.SCALLOP) {
                 mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
-                mPath.lineTo((float) left + mCornerRadius, (float) top);
+                mPath.lineTo(left + mCornerRadius, top);
 
-                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.lineTo(right - mCornerRadius, top);
                 mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
 
             } else {
-                mPath.lineTo((float) left, (float) top);
-                mPath.lineTo((float) right, (float) top);
+                mPath.moveTo(left, top);
+                mPath.lineTo(right, top);
             }
 
-            mRect.set((float) (right - mScallopRadius), ((float) top) + offset, (float) (right + mScallopRadius), (((float) mScallopHeight) + offset) + ((float) top));
+            mRect.set(right - mScallopRadius, top + offset, right + mScallopRadius, mScallopHeight + offset + top);
             mPath.arcTo(mRect, 270, -180.0f, false);
 
             if(mCornerType == CornerType.ROUNDED) {
 
                 mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
-                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+                mPath.lineTo(right - mCornerRadius, bottom);
 
-                mPath.lineTo((float) left + mCornerRadius, (float) bottom);
+                mPath.lineTo(left + mCornerRadius, bottom);
                 mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
 
             } else if(mCornerType == CornerType.SCALLOP) {
 
                 mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
-                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+                mPath.lineTo(right - mCornerRadius, bottom);
 
-                mPath.lineTo((float) left + mCornerRadius, (float) bottom);
+                mPath.lineTo(left + mCornerRadius, bottom);
                 mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
 
             } else {
-                mPath.lineTo((float) right, (float) bottom);
-                mPath.lineTo((float) left, (float) bottom);
+                mPath.lineTo(right, bottom);
+                mPath.lineTo(left, bottom);
             }
 
-            mRect.set((float) (left - mScallopRadius), ((float) top) + offset, (float) (left + mScallopRadius), (((float) mScallopHeight) + offset) + ((float) top));
+            mRect.set(left - mScallopRadius, top + offset, left + mScallopRadius, mScallopHeight + offset + top);
             mPath.arcTo(mRect, 90.0f, -180.0f, false);
             mPath.close();
 
@@ -166,72 +184,100 @@ public class TicketView extends View {
 
             if(mCornerType == CornerType.ROUNDED) {
                 mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
-                mPath.lineTo((float) left + mCornerRadius, (float) top);
+                mPath.lineTo(left + mCornerRadius, top);
 
             } else if(mCornerType == CornerType.SCALLOP) {
 
                 mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
-                mPath.lineTo((float) left + mCornerRadius, (float) top);
+                mPath.lineTo(left + mCornerRadius, top);
 
             } else {
-                mPath.lineTo((float) left, (float) top);
+                mPath.moveTo(left, top);
             }
 
-            mRect.set(((float) left) + offset, (float) (top - mScallopRadius), (((float) mScallopHeight) + offset) + ((float) left), (float) (top + mScallopRadius));
+            mRect.set(left + offset, top - mScallopRadius, mScallopHeight + offset + left, top + mScallopRadius);
             mPath.arcTo(mRect, 180.0f, -180.0f, false);
 
             if(mCornerType == CornerType.ROUNDED) {
 
-                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.lineTo(right - mCornerRadius, top);
                 mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
 
                 mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
-                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+                mPath.lineTo(right - mCornerRadius, bottom);
 
             } else if(mCornerType == CornerType.SCALLOP) {
 
-                mPath.lineTo((float) right - mCornerRadius, (float) top);
+                mPath.lineTo(right - mCornerRadius, top);
                 mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
 
                 mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
-                mPath.lineTo((float) right - mCornerRadius, (float) bottom);
+                mPath.lineTo(right - mCornerRadius, bottom);
 
             } else {
-                mPath.lineTo((float) right, (float) top);
-                mPath.lineTo((float) right, (float) bottom);
+                mPath.lineTo(right, top);
+                mPath.lineTo(right, bottom);
             }
 
-            mRect.set(((float) left) + offset, (float) (bottom - mScallopRadius), (((float) mScallopHeight) + offset) + ((float) left), (float) (bottom + mScallopRadius));
+            mRect.set(left + offset, bottom - mScallopRadius, mScallopHeight + offset + left, bottom + mScallopRadius);
             mPath.arcTo(mRect, 0.0f, -180.0f, false);
 
             if(mCornerType == CornerType.ROUNDED) {
 
                 mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
-                mPath.lineTo((float) left, (float) bottom - mCornerRadius);
+                mPath.lineTo(left, bottom - mCornerRadius);
 
             } else if(mCornerType == CornerType.SCALLOP) {
 
                 mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
-                mPath.lineTo((float) left - mCornerRadius, (float) bottom - mCornerRadius);
+                mPath.lineTo(left, bottom - mCornerRadius);
 
             } else {
-                mPath.lineTo((float) left, (float) bottom);
+                mPath.lineTo(left, bottom);
             }
             mPath.close();
-
-            if (mOrientation == Orientation.HORIZONTAL) {
-                mDividerStartX = (float) (left + mScallopRadius);
-                mDividerStartY = ((float) mScallopRadius) + (((float) top) + offset);
-                mDividerStopX = (float) (right - mScallopRadius);
-                mDividerStopY = ((float) mScallopRadius) + (((float) top) + offset);
-            } else {
-                mDividerStartX = ((float) mScallopRadius) + (((float) left) + offset);
-                mDividerStartY = (float) (top + mScallopRadius);
-                mDividerStopX = ((float) mScallopRadius) + (((float) left) + offset);
-                mDividerStopY = (float) (bottom - mScallopRadius);
-            }
         }
+
+        // divider
+        if (mOrientation == Orientation.HORIZONTAL) {
+            mDividerStartX = left + mScallopRadius;
+            mDividerStartY = mScallopRadius + top + offset;
+            mDividerStopX = right - mScallopRadius;
+            mDividerStopY = mScallopRadius + top + offset;
+        } else {
+            mDividerStartX = mScallopRadius + left + offset;
+            mDividerStartY = top + mScallopRadius;
+            mDividerStopX = mScallopRadius + left + offset;
+            mDividerStopY = bottom - mScallopRadius;
+        }
+
+        generateShadow();
         mDirty = false;
+    }
+
+    private void generateShadow() {
+        if (mShadowBlurRadius == 0f) return;
+
+        if (mShadow == null) {
+            mShadow = Bitmap.createBitmap(getWidth(), getHeight(), ALPHA_8);
+        } else {
+            mShadow.eraseColor(TRANSPARENT);
+        }
+        Canvas c = new Canvas(mShadow);
+        c.drawPath(mPath, mShadowPaint);
+        if (mShowBorder) {
+            c.drawPath(mPath, mShadowPaint);
+        }
+        RenderScript rs = RenderScript.create(getContext());
+        ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8(rs));
+        Allocation input = Allocation.createFromBitmap(rs, mShadow);
+        Allocation output = Allocation.createTyped(rs, input.getType());
+        blur.setRadius(mShadowBlurRadius);
+        blur.setInput(input);
+        blur.forEach(output);
+        output.copyTo(mShadow);
+        input.destroy();
+        output.destroy();
     }
 
     private void init(AttributeSet attrs) {
@@ -252,16 +298,27 @@ public class TicketView extends View {
             mDividerDashGap = typedArray.getDimensionPixelSize(R.styleable.TicketView_dividerDashGap, Utils.dpToPx(4f, getContext()));
             mCornerType = typedArray.getInt(R.styleable.TicketView_cornerType, CornerType.NORMAL);
             mCornerRadius = typedArray.getDimensionPixelSize(R.styleable.TicketView_cornerRadius, Utils.dpToPx(4f, getContext()));
+            float elevation = 0f;
+            if (typedArray.hasValue(R.styleable.TicketView_ticketElevation)) {
+                elevation = typedArray.getDimension(R.styleable.TicketView_ticketElevation, elevation);
+            } else if (typedArray.hasValue(R.styleable.TicketView_android_elevation)) {
+                elevation = typedArray.getDimension(R.styleable.TicketView_android_elevation, elevation);
+            }
+            if (elevation > 0f) {
+                setShadowBlurRadius(elevation);
+            }
 
             typedArray.recycle();
         }
+        mShadowPaint.setColorFilter(new PorterDuffColorFilter(BLACK, SRC_IN));
+        mShadowPaint.setAlpha(51); // 20%. Could make this an attr?
 
         initElements();
 
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
-    private void initElements(){
+    private void initElements() {
 
         if(mDividerWidth>mScallopRadius){
             mDividerWidth = mScallopRadius;
@@ -304,46 +361,45 @@ public class TicketView extends View {
             mDividerPaint.setPathEffect(new DashPathEffect(new float[]{(float) mDividerDashLength, (float) mDividerDashGap}, 0.0f));
         else
             mDividerPaint.setPathEffect(new PathEffect());
-
     }
 
-    private RectF getTopLeftCornerRoundedArc(int top, int left){
-        mRoundedCornerArc.set((float) left, (float) top , (float) left + mCornerRadius * 2, (float) top + mCornerRadius * 2);
+    private RectF getTopLeftCornerRoundedArc(float top, float left) {
+        mRoundedCornerArc.set(left, top, left + mCornerRadius * 2, top + mCornerRadius * 2);
         return mRoundedCornerArc;
     }
 
-    private RectF getTopRightCornerRoundedArc(int top, int right){
-        mRoundedCornerArc.set(((float) right) - mCornerRadius * 2, (float) top, ((float) right), (float) (top + mCornerRadius * 2));
+    private RectF getTopRightCornerRoundedArc(float top, float right) {
+        mRoundedCornerArc.set(right - mCornerRadius * 2, top, right, top + mCornerRadius * 2);
         return mRoundedCornerArc;
     }
 
-    private RectF getBottomLeftCornerRoundedArc(int left, int bottom){
-        mRoundedCornerArc.set(((float) left), (float) bottom - mCornerRadius * 2 , (float) left + mCornerRadius * 2, (float) bottom);
+    private RectF getBottomLeftCornerRoundedArc(float left, float bottom) {
+        mRoundedCornerArc.set(left, bottom - mCornerRadius * 2 , left + mCornerRadius * 2, bottom);
         return mRoundedCornerArc;
     }
 
-    private RectF getBottomRightCornerRoundedArc(int bottom, int right){
-        mRoundedCornerArc.set(((float) right) - mCornerRadius * 2, (float) bottom - mCornerRadius * 2 , ((float) right), (float) bottom);
+    private RectF getBottomRightCornerRoundedArc(float bottom, float right) {
+        mRoundedCornerArc.set(right - mCornerRadius * 2, bottom - mCornerRadius * 2 , right, bottom);
         return mRoundedCornerArc;
     }
 
-    private RectF getTopLeftCornerScallopArc(int top, int left){
-        mScallopCornerArc.set((float) (left - mCornerRadius), (float) (top - mCornerRadius) , (float) (left + mCornerRadius), (float) (top + mCornerRadius));
+    private RectF getTopLeftCornerScallopArc(float top, float left) {
+        mScallopCornerArc.set(left - mCornerRadius, top - mCornerRadius , left + mCornerRadius, top + mCornerRadius);
         return mScallopCornerArc;
     }
 
-    private RectF getTopRightCornerScallopArc(int top, int right){
-        mScallopCornerArc.set((float) (right - mCornerRadius), (float) (top - mCornerRadius), (float) (right + mCornerRadius), (float) (top + mCornerRadius));
+    private RectF getTopRightCornerScallopArc(float top, float right) {
+        mScallopCornerArc.set(right - mCornerRadius, top - mCornerRadius, right + mCornerRadius, top + mCornerRadius);
         return mScallopCornerArc;
     }
 
-    private RectF getBottomLeftCornerScallopArc(int left, int bottom){
-        mScallopCornerArc.set(((float) left - mCornerRadius), (float) (bottom - mCornerRadius) , (float) (left + mCornerRadius), (float) (bottom + mCornerRadius));
+    private RectF getBottomLeftCornerScallopArc(float left, float bottom) {
+        mScallopCornerArc.set(left - mCornerRadius, bottom - mCornerRadius , left + mCornerRadius, bottom + mCornerRadius);
         return mScallopCornerArc;
     }
 
-    private RectF getBottomRightCornerScallopArc(int bottom, int right){
-        mScallopCornerArc.set((float) (right - mCornerRadius), (float) (bottom - mCornerRadius) , (float) (right + mCornerRadius), (float) (bottom + mCornerRadius));
+    private RectF getBottomRightCornerScallopArc(float bottom, float right) {
+        mScallopCornerArc.set(right - mCornerRadius, bottom - mCornerRadius , right + mCornerRadius, bottom + mCornerRadius);
         return mScallopCornerArc;
     }
 
@@ -480,5 +536,15 @@ public class TicketView extends View {
     public void setCornerRadius(int cornerRadius) {
         this.mCornerRadius = cornerRadius;
         initElements();
+    }
+
+    public void setTicketElevation(float elevation) {
+        setShadowBlurRadius(elevation);
+        initElements();
+    }
+
+    private void setShadowBlurRadius(float elevation) {
+        float maxElevation = Utils.dpToPx(24f, getContext());
+        mShadowBlurRadius = Math.min(25f * (elevation / maxElevation), 25f);
     }
 }

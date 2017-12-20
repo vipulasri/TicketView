@@ -101,6 +101,8 @@ class MainActivity : BaseActivity() {
             showColorPicker(ticketView.backgroundColor, image_background_color)
         })
 
+        seekBar_elevation.setOnProgressChangeListener(progressChangeListener)
+
         //scallop properties
 
         seekBar_scallop_radius.progress = Utils.pxToDp(ticketView.scallopRadius.toFloat(), this)
@@ -228,6 +230,7 @@ class MainActivity : BaseActivity() {
             val valueInDp = Utils.dpToPx(value.toFloat(), this@MainActivity)
             Log.d("TAG", "->"+discreteSeekBar.id)
             when(discreteSeekBar.id) {
+                R.id.seekBar_elevation -> ticketView.setTicketElevation(valueInDp.toFloat())
                 R.id.seekBar_border_width -> ticketView.borderWidth = valueInDp
                 R.id.seekBar_scallop_radius -> ticketView.scallopRadius = valueInDp
                 R.id.seekBar_divider_width -> ticketView.dividerWidth = valueInDp

@@ -4,7 +4,7 @@ buildscript {
     ext.versions = [
             'compileSdk'    : 27,
             'buildTools'    : '27.0.1',
-            'minSdk'        : 15,
+            'minSdk'        : 17, // FIXME increased due to RenderScript usage—could use the compat lib if you want to take this dependency?
             'targetSdk'     : 27,
             'supportLibrary': '27.0.2',
             'butterknife'   : '8.8.1',
