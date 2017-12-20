@@ -11,6 +11,7 @@
     <string name="border">Border</string>
     <string name="divider">Divider</string>
     <string name="radius">Radius</string>
+    <string name="elevation">Elevation</string>
     <string name="position_percent">Position(in %)</string>
     <string name="color">Color</string>
     <string name="width">Width</string>

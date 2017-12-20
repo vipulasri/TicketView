@@ -109,6 +109,26 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatTextView
+                    style="@style/Label"
+                    android:text="@string/elevation" />
+
+                <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                    style="@style/DiscreteSeekBar"
+                    android:id="@+id/seekBar_elevation"
+                    app:dsb_min="0"
+                    app:dsb_max="24"
+                    app:dsb_value="12"/>
+
+            </LinearLayout>
+
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />

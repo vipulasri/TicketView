@@ -27,6 +27,8 @@
             <enum name="scallop" value="2"/>
         </attr>
         <attr name="cornerRadius" format="dimension"/>
+        <attr name="android:elevation" />
+        <attr name="ticketElevation" format="dimension" />
     </declare-styleable>
 
 </resources>
