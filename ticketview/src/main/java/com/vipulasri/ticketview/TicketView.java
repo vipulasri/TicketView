@@ -51,6 +51,8 @@ public class TicketView extends View {
     private Paint mDividerPaint = new Paint();
     private int mOrientation;
     private Path mPath = new Path();
+    private boolean mDirty = true;
+    private float mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY;
     private RectF mRect = new RectF();
     private RectF mRoundedCornerArc = new RectF();
     private RectF mScallopCornerArc = new RectF();
@@ -88,8 +90,21 @@ public class TicketView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float offset;
         super.onDraw(canvas);
+        if (mDirty) {
+            doLayout();
+        }
+        canvas.drawPath(mPath, mBackgroundPaint);
+        if (mShowBorder) {
+            canvas.drawPath(mPath, mBorderPaint);
+        }
+        if (mShowDivider) {
+            canvas.drawLine(mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY, mDividerPaint);
+        }
+    }
+
+    private void doLayout() {
+        float offset;
         int left = getPaddingLeft();
         int right = getWidth() - getPaddingRight();
         int top = getPaddingTop();
@@ -97,7 +112,7 @@ public class TicketView extends View {
         mPath.reset();
 
         if (mOrientation == Orientation.HORIZONTAL) {
-            offset = (float) (((top + bottom) / mScallopPosition) - mScallopRadius);
+            offset = (((top + bottom) / mScallopPosition) - mScallopRadius);
 
             if(mCornerType == CornerType.ROUNDED) {
                 mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
@@ -147,7 +162,7 @@ public class TicketView extends View {
             mPath.close();
 
         } else {
-            offset = (float) (((right + left) / mScallopPosition) - mScallopRadius);
+            offset = (((right + left) / mScallopPosition) - mScallopRadius);
 
             if(mCornerType == CornerType.ROUNDED) {
                 mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
@@ -202,26 +217,21 @@ public class TicketView extends View {
             } else {
                 mPath.lineTo((float) left, (float) bottom);
             }
-
             mPath.close();
-        }
 
-        canvas.drawPath(mPath, mBackgroundPaint);
-
-        if (mShowBorder) {
-            canvas.drawPath(mPath, mBorderPaint);
-        }
-
-        if(mShowDivider) {
-            Canvas canvas2;
             if (mOrientation == Orientation.HORIZONTAL) {
-                canvas2 = canvas;
-                canvas2.drawLine((float) (left + mScallopRadius), ((float) mScallopRadius) + (((float) top) + offset), (float) (right - mScallopRadius), ((float) mScallopRadius) + (((float) top) + offset), mDividerPaint);
-                return;
+                mDividerStartX = (float) (left + mScallopRadius);
+                mDividerStartY = ((float) mScallopRadius) + (((float) top) + offset);
+                mDividerStopX = (float) (right - mScallopRadius);
+                mDividerStopY = ((float) mScallopRadius) + (((float) top) + offset);
+            } else {
+                mDividerStartX = ((float) mScallopRadius) + (((float) left) + offset);
+                mDividerStartY = (float) (top + mScallopRadius);
+                mDividerStopX = ((float) mScallopRadius) + (((float) left) + offset);
+                mDividerStopY = (float) (bottom - mScallopRadius);
             }
-            canvas2 = canvas;
-            canvas2.drawLine(((float) mScallopRadius) + (((float) left) + offset), (float) (top + mScallopRadius), ((float) mScallopRadius) + (((float) left) + offset), (float) (bottom - mScallopRadius), mDividerPaint);
         }
+        mDirty = false;
     }
 
     private void init(AttributeSet attrs) {
@@ -265,6 +275,7 @@ public class TicketView extends View {
         setBorderPaint();
         setDividerPaint();
 
+        mDirty = true;
         invalidate();
     }
 
