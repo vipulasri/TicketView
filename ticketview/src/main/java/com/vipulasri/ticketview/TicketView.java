@@ -256,28 +256,30 @@ public class TicketView extends View {
     }
 
     private void generateShadow() {
-        if (mShadowBlurRadius == 0f) return;
+        if (isJellyBeanAndAbove()) {
+            if (mShadowBlurRadius == 0f) return;
 
-        if (mShadow == null) {
-            mShadow = Bitmap.createBitmap(getWidth(), getHeight(), ALPHA_8);
-        } else {
-            mShadow.eraseColor(TRANSPARENT);
-        }
-        Canvas c = new Canvas(mShadow);
-        c.drawPath(mPath, mShadowPaint);
-        if (mShowBorder) {
+            if (mShadow == null) {
+                mShadow = Bitmap.createBitmap(getWidth(), getHeight(), ALPHA_8);
+            } else {
+                mShadow.eraseColor(TRANSPARENT);
+            }
+            Canvas c = new Canvas(mShadow);
             c.drawPath(mPath, mShadowPaint);
+            if (mShowBorder) {
+                c.drawPath(mPath, mShadowPaint);
+            }
+            RenderScript rs = RenderScript.create(getContext());
+            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8(rs));
+            Allocation input = Allocation.createFromBitmap(rs, mShadow);
+            Allocation output = Allocation.createTyped(rs, input.getType());
+            blur.setRadius(mShadowBlurRadius);
+            blur.setInput(input);
+            blur.forEach(output);
+            output.copyTo(mShadow);
+            input.destroy();
+            output.destroy();
         }
-        RenderScript rs = RenderScript.create(getContext());
-        ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8(rs));
-        Allocation input = Allocation.createFromBitmap(rs, mShadow);
-        Allocation output = Allocation.createTyped(rs, input.getType());
-        blur.setRadius(mShadowBlurRadius);
-        blur.setInput(input);
-        blur.forEach(output);
-        output.copyTo(mShadow);
-        input.destroy();
-        output.destroy();
     }
 
     private void init(AttributeSet attrs) {
@@ -310,8 +312,9 @@ public class TicketView extends View {
 
             typedArray.recycle();
         }
+
         mShadowPaint.setColorFilter(new PorterDuffColorFilter(BLACK, SRC_IN));
-        mShadowPaint.setAlpha(51); // 20%. Could make this an attr?
+        mShadowPaint.setAlpha(51); // 20%
 
         initElements();
 
@@ -539,12 +542,24 @@ public class TicketView extends View {
     }
 
     public void setTicketElevation(float elevation) {
+        if(!isJellyBeanAndAbove()) {
+            Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
+            return;
+        }
         setShadowBlurRadius(elevation);
         initElements();
     }
 
     private void setShadowBlurRadius(float elevation) {
+        if(!isJellyBeanAndAbove()) {
+            Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
+            return;
+        }
         float maxElevation = Utils.dpToPx(24f, getContext());
         mShadowBlurRadius = Math.min(25f * (elevation / maxElevation), 25f);
+    }
+
+    private boolean isJellyBeanAndAbove(){
+        return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
     }
 }
