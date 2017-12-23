@@ -3,8 +3,9 @@
 An Android Library used to implement TicketView in android with normal, rounded and scallop corners.
 
 ### Specs
+[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 [![Download](https://api.bintray.com/packages/vipulasri/maven/TicketView/images/download.svg)](https://bintray.com/vipulasri/maven/TicketView/_latestVersion)
-[![MethodsCount](https://img.shields.io/badge/Methods%20and%20size-98%20|%2010KB-e91e63.svg)](http://www.methodscount.com/?lib=com.vipulasri%3Aticketview%3A1.0.2)
+[![MethodsCount](https://img.shields.io/badge/Methods%20and%20size-125%20|%2012KB-e91e63.svg)](http://www.methodscount.com/?lib=com.vipulasri%3Aticketview%3A1.0.2)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/vipulasri/Timeline-View/blob/master/LICENSE)
 
 ### Badges/Featured In
@@ -29,7 +30,7 @@ For information : checkout [Sample App Code](https://github.com/vipulasri/Ticket
 
 ``` gradle
 dependencies {
-    compile 'com.vipulasri:ticketview:1.0.2'
+    compile 'com.vipulasri:ticketview:1.0.3'
 }
 ```
 
@@ -39,7 +40,7 @@ dependencies {
 <dependency>
     <groupId>com.vipulasri</groupId>
     <artifactId>ticketview</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <type>pom</type>
 </dependency>
 ```
@@ -152,12 +153,21 @@ If you Watch this repository, GitHub will send you an email every time I publish
         <td>4dp</td>
         <td>sets corner radius if corner rounder or scallop</td>
     </tr>
+    <tr>
+        <td>app:ticketElevation="14dp"</td>
+        <td>0dp</td>
+        <td>sets elevation to ticket view on android jellybean adn above</td>
+    </tr>
     </table>
  
 ## Apps that use this library
 
 If you're using this library in your app and you'd like to list it here,
 Please let me know via [email](mailto:vipulasri.2007@gmail.com), [pull requests](https://github.com/vipulasri/TicketView/pulls) or [issues](https://github.com/vipulasri/TicketView/issues).
+
+## Special Thanks
+
+[**Nick Butcher**](https://github.com/nickbutcher)for helping me out with TicketView Shadow/Elevation.
 
 
 ## License

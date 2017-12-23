@@ -3,11 +3,9 @@ package com.vipulasri.ticketview.sample
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.vipulasri.ticketview.TicketView
 
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import com.thebluealliance.spectrum.SpectrumDialog
 import android.graphics.PorterDuff
@@ -17,6 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ImageView
+import kotlinx.android.synthetic.main.item_background_options.*
 import kotlinx.android.synthetic.main.item_border_options.*
 import kotlinx.android.synthetic.main.item_divider_options.*
 import android.widget.RadioGroup
@@ -84,6 +83,11 @@ class MainActivity : BaseActivity() {
         image_background_color.background.setColorFilter(ticketView.backgroundColor, PorterDuff.Mode.SRC_ATOP)
         image_border_color.background.setColorFilter(ticketView.borderColor, PorterDuff.Mode.SRC_ATOP)
         image_divider_color.background.setColorFilter(ticketView.dividerColor, PorterDuff.Mode.SRC_ATOP)
+
+        when(ticketView.orientation) {
+            TicketView.Orientation.HORIZONTAL -> radioButton_horizontal.isChecked = true
+            TicketView.Orientation.VERTICAL -> radioButton_vertical.isChecked = true
+        }
 
         radioGroup_orientation.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
             when(checkedId) {

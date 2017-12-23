@@ -7,7 +7,7 @@ ext {
     groupId = 'com.vipulasri'
     libraryName = 'TicketView'
     artifact = 'ticketview'
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3'
     libraryDescription = 'A custom view to implement TicketView in android.'
 
     siteUrl = 'https://github.com/vipulasri/TicketView'

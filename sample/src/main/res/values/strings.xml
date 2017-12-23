@@ -32,6 +32,7 @@
     <string name="movie_seat">C5-C8</string>
     <string name="corners">Corners</string>
     <string name="example">Example</string>
+    <string name="background">Background</string>
 
     <string-array name="divider_type">
         <item>Normal</item>
