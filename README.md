@@ -69,7 +69,8 @@ If you Watch this repository, GitHub will send you an email every time I publish
         app:showBorder="false"
         app:scallopPositionPercent="50"
         app:showDivider="true"
-        app:dividerType="dash"/>
+        app:dividerType="dash"
+        app:ticketElevation="14dp"/>
 ```
 
 * Configure using xml attributes or setters in code:
@@ -156,7 +157,7 @@ If you Watch this repository, GitHub will send you an email every time I publish
     <tr>
         <td>app:ticketElevation="14dp"</td>
         <td>0dp</td>
-        <td>sets elevation to ticket view on android jellybean adn above</td>
+        <td>sets elevation to ticket view on android jellybean and above</td>
     </tr>
     </table>
  
@@ -167,7 +168,7 @@ Please let me know via [email](mailto:vipulasri.2007@gmail.com), [pull requests]
 
 ## Special Thanks
 
-[**Nick Butcher**](https://github.com/nickbutcher)for helping me out with TicketView Shadow/Elevation.
+[**Nick Butcher**](https://github.com/nickbutcher) for helping me out with TicketView Shadow/Elevation.
 
 
 ## License
