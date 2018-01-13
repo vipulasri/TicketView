@@ -553,11 +553,11 @@ public class TicketView extends View {
     }
 
     public int getShadowColor() {
-        return mDividerColor;
+        return mShadowColor;
     }
 
     public void setShadowColor(int dividerColor) {
-        this.mDividerColor = dividerColor;
+        this.mShadowColor = dividerColor;
         initElements();
     }
 
