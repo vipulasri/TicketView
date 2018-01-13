@@ -19,7 +19,7 @@ public class BlurBuilder {
         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
 
             RenderScript rs = RenderScript.create(context);
-            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.A_8(rs));
+            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
             Allocation input = Allocation.createFromBitmap(rs, image);
             Allocation output = Allocation.createTyped(rs, input.getType());
             blur.setRadius(radius);
