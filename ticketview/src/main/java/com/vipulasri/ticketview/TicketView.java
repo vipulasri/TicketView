@@ -10,10 +10,6 @@ import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -269,16 +265,8 @@ public class TicketView extends View {
             if (mShowBorder) {
                 c.drawPath(mPath, mShadowPaint);
             }
-            RenderScript rs = RenderScript.create(getContext());
-            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8(rs));
-            Allocation input = Allocation.createFromBitmap(rs, mShadow);
-            Allocation output = Allocation.createTyped(rs, input.getType());
-            blur.setRadius(mShadowBlurRadius);
-            blur.setInput(input);
-            blur.forEach(output);
-            output.copyTo(mShadow);
-            input.destroy();
-            output.destroy();
+
+            mShadow = BlurBuilder.blur(getContext(),mShadow,mCornerRadius);
         }
     }
 
