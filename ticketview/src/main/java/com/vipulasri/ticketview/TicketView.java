@@ -10,10 +10,6 @@ import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -22,8 +18,7 @@ import android.view.View;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static android.graphics.Bitmap.Config.ALPHA_8;
-import static android.graphics.Color.BLACK;
+import static android.graphics.Bitmap.Config.ARGB_8888;
 import static android.graphics.Color.TRANSPARENT;
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.graphics.PorterDuff.Mode.SRC_IN;
@@ -86,6 +81,7 @@ public class TicketView extends View {
     private int mCornerRadius;
     private Bitmap mShadow;
     private final Paint mShadowPaint = new Paint(ANTI_ALIAS_FLAG);
+    private int mShadowColor;
     private float mShadowBlurRadius = 0f;
 
     public TicketView(Context context) {
@@ -260,7 +256,7 @@ public class TicketView extends View {
             if (mShadowBlurRadius == 0f) return;
 
             if (mShadow == null) {
-                mShadow = Bitmap.createBitmap(getWidth(), getHeight(), ALPHA_8);
+                mShadow = Bitmap.createBitmap(getWidth(), getHeight(), ARGB_8888);
             } else {
                 mShadow.eraseColor(TRANSPARENT);
             }
@@ -269,16 +265,8 @@ public class TicketView extends View {
             if (mShowBorder) {
                 c.drawPath(mPath, mShadowPaint);
             }
-            RenderScript rs = RenderScript.create(getContext());
-            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8(rs));
-            Allocation input = Allocation.createFromBitmap(rs, mShadow);
-            Allocation output = Allocation.createTyped(rs, input.getType());
-            blur.setRadius(mShadowBlurRadius);
-            blur.setInput(input);
-            blur.forEach(output);
-            output.copyTo(mShadow);
-            input.destroy();
-            output.destroy();
+
+            mShadow = BlurBuilder.blur(getContext(),mShadow,mCornerRadius);
         }
     }
 
@@ -309,12 +297,11 @@ public class TicketView extends View {
             if (elevation > 0f) {
                 setShadowBlurRadius(elevation);
             }
+            mShadowColor = typedArray.getColor(R.styleable.TicketView_shadowColor, getResources().getColor(android.R.color.black));
 
             typedArray.recycle();
         }
 
-        mShadowPaint.setColorFilter(new PorterDuffColorFilter(BLACK, SRC_IN));
-        mShadowPaint.setAlpha(51); // 20%
 
         initElements();
 
@@ -331,12 +318,18 @@ public class TicketView extends View {
         mScallopPosition  = 100 / mScallopPositionPercent;
         mScallopHeight = mScallopRadius * 2;
 
+        setShadowPaint();
         setBackgroundPaint();
         setBorderPaint();
         setDividerPaint();
 
         mDirty = true;
         invalidate();
+    }
+
+    private void setShadowPaint() {
+        mShadowPaint.setColorFilter(new PorterDuffColorFilter(mShadowColor, SRC_IN));
+        mShadowPaint.setAlpha(51); // 20%
     }
 
     private void setBackgroundPaint() {
@@ -557,6 +550,15 @@ public class TicketView extends View {
         }
         float maxElevation = Utils.dpToPx(24f, getContext());
         mShadowBlurRadius = Math.min(25f * (elevation / maxElevation), 25f);
+    }
+
+    public int getShadowColor() {
+        return mShadowColor;
+    }
+
+    public void setShadowColor(int dividerColor) {
+        this.mShadowColor = dividerColor;
+        initElements();
     }
 
     private boolean isJellyBeanAndAbove(){

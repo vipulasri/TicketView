@@ -1,30 +1,27 @@
 package com.vipulasri.ticketview.sample
 
 import android.content.Intent
-import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
-import android.view.View
-import com.vipulasri.ticketview.TicketView
-
-import kotlinx.android.synthetic.main.content_main.*
-import com.thebluealliance.spectrum.SpectrumDialog
 import android.graphics.PorterDuff
+import android.os.Bundle
 import android.support.annotation.NonNull
+import android.support.design.widget.BottomSheetBehavior
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ImageView
+import com.thebluealliance.spectrum.SpectrumDialog
+import com.vipulasri.ticketview.TicketView
+import kotlinx.android.synthetic.main.bottomsheet_ticket_attributes.*
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.item_background_options.*
 import kotlinx.android.synthetic.main.item_border_options.*
+import kotlinx.android.synthetic.main.item_corner_options.*
 import kotlinx.android.synthetic.main.item_divider_options.*
-import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.item_scallop_options.*
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.CompoundButton
-import kotlinx.android.synthetic.main.bottomsheet_ticket_attributes.*
-import kotlinx.android.synthetic.main.item_corner_options.*
 
 
 class MainActivity : BaseActivity() {
@@ -56,7 +53,7 @@ class MainActivity : BaseActivity() {
     private fun initOptionsBottomSheet() {
         val behavior = BottomSheetBehavior.from<View>(bottomSheet)
 
-        view_options_header.setOnClickListener(View.OnClickListener {
+        view_options_header.setOnClickListener({
             if (behavior!!.state == BottomSheetBehavior.STATE_COLLAPSED) {
                 behavior.state = BottomSheetBehavior.STATE_EXPANDED
             } else {
@@ -81,6 +78,7 @@ class MainActivity : BaseActivity() {
         })
 
         image_background_color.background.setColorFilter(ticketView.backgroundColor, PorterDuff.Mode.SRC_ATOP)
+        image_background_shadow_color.background.setColorFilter(ticketView.shadowColor, PorterDuff.Mode.SRC_ATOP)
         image_border_color.background.setColorFilter(ticketView.borderColor, PorterDuff.Mode.SRC_ATOP)
         image_divider_color.background.setColorFilter(ticketView.dividerColor, PorterDuff.Mode.SRC_ATOP)
 
@@ -89,7 +87,7 @@ class MainActivity : BaseActivity() {
             TicketView.Orientation.VERTICAL -> radioButton_vertical.isChecked = true
         }
 
-        radioGroup_orientation.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        radioGroup_orientation.setOnCheckedChangeListener({ group, checkedId ->
             when(checkedId) {
                 R.id.radioButton_horizontal -> ticketView.orientation = TicketView.Orientation.HORIZONTAL
                 R.id.radioButton_vertical -> ticketView.orientation = TicketView.Orientation.VERTICAL
@@ -101,8 +99,12 @@ class MainActivity : BaseActivity() {
 
         //background properties
 
-        image_background_color.setOnClickListener(View.OnClickListener {
+        image_background_color.setOnClickListener({
             showColorPicker(ticketView.backgroundColor, image_background_color)
+        })
+
+        image_background_shadow_color.setOnClickListener({
+            showColorPicker(ticketView.shadowColor, image_background_shadow_color)
         })
 
         seekBar_elevation.setOnProgressChangeListener(progressChangeListener)
@@ -128,14 +130,14 @@ class MainActivity : BaseActivity() {
 
         ticketView.isShowBorder = false
         checkbox_show_border.isChecked = false
-        checkbox_show_border.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+        checkbox_show_border.setOnCheckedChangeListener({ compoundButton, b ->
             ticketView.isShowBorder = b
         })
 
         seekBar_border_width.progress = Utils.pxToDp(ticketView.borderWidth.toFloat(), this)
         seekBar_border_width.setOnProgressChangeListener(progressChangeListener)
 
-        image_border_color.setOnClickListener(View.OnClickListener {
+        image_border_color.setOnClickListener({
             showColorPicker(ticketView.borderColor, image_border_color)
         })
 
@@ -143,11 +145,11 @@ class MainActivity : BaseActivity() {
 
         ticketView.isShowDivider = true
         checkbox_show_divider.isChecked = true
-        checkbox_show_divider.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+        checkbox_show_divider.setOnCheckedChangeListener({ compoundButton, b ->
             ticketView.isShowDivider = b
         })
 
-        image_divider_color.setOnClickListener(View.OnClickListener {
+        image_divider_color.setOnClickListener({
             showColorPicker(ticketView.dividerColor, image_divider_color)
         })
 
@@ -210,7 +212,7 @@ class MainActivity : BaseActivity() {
                 .setSelectedColor(selectedColor)
                 .setDismissOnColorSelected(true)
                 .setOutlineWidth(1)
-                .setOnColorSelectedListener(SpectrumDialog.OnColorSelectedListener { positiveResult, color ->
+                .setOnColorSelectedListener({ positiveResult, color ->
                     if (positiveResult) {
                         colorView.background.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
 
@@ -218,6 +220,7 @@ class MainActivity : BaseActivity() {
                             R.id.image_border_color -> ticketView.borderColor = color
                             R.id.image_divider_color -> ticketView.dividerColor = color
                             R.id.image_background_color -> ticketView.backgroundColor = color
+                            R.id.image_background_shadow_color -> ticketView.shadowColor = color
                             else -> {
                                 //do nothing
                             }

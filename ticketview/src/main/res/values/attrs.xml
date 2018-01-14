@@ -29,6 +29,7 @@
         <attr name="cornerRadius" format="dimension"/>
         <attr name="android:elevation" />
         <attr name="ticketElevation" format="dimension" />
+        <attr name="shadowColor" format="color"/>
     </declare-styleable>
 
 </resources>

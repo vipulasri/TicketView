@@ -19,6 +19,7 @@
         app:showBorder="false"
         app:scallopPositionPercent="50"
         app:showDivider="true"
-        app:dividerType="dash"/>
+        app:dividerType="dash"
+        />
 
 </RelativeLayout>
