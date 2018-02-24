@@ -109,7 +109,7 @@ public class TicketView extends View {
         if (mDirty) {
             doLayout();
         }
-        if (mShadowBlurRadius > 0f) {
+        if (mShadowBlurRadius > 0f && !isInEditMode()) {
             canvas.drawBitmap(mShadow, 0f, mShadowBlurRadius / 2f, null);
         }
         canvas.drawPath(mPath, mBackgroundPaint);
@@ -256,7 +256,7 @@ public class TicketView extends View {
     }
 
     private void generateShadow() {
-        if (isJellyBeanAndAbove()) {
+        if (isJellyBeanAndAbove() && !isInEditMode()) {
             if (mShadowBlurRadius == 0f) return;
 
             if (mShadow == null) {
