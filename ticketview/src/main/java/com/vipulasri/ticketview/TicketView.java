@@ -279,6 +279,7 @@ public class TicketView extends View {
             output.copyTo(mShadow);
             input.destroy();
             output.destroy();
+            blur.destroy();
         }
     }
 
