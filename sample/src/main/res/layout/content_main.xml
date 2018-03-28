@@ -16,6 +16,7 @@
         android:id="@+id/ticketView"
         app:ticketElevation="12dp"
         app:scallopRadius="10dp"
+        app:dividerPadding="0dp"
         app:showBorder="false"
         app:scallopPositionPercent="50"
         app:showDivider="true"

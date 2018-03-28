@@ -41,6 +41,7 @@
             app:borderWidth="1dp"
             app:borderColor="@color/colorAccent"
             app:showDivider="true"
+            app:dividerPadding="0dp"
             app:dividerType="dash"
             app:cornerType="rounded"
             app:ticketElevation="8dp"/>
