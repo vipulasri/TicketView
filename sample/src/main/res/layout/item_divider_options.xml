@@ -60,6 +60,28 @@
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:text="@string/padding"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            style="@style/DiscreteSeekBar"
+            android:id="@+id/seekBar_divider_padding"
+            app:dsb_min="0"
+            app:dsb_max="40"
+            app:dsb_value="0"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
             android:text="@string/color"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
 

@@ -517,6 +517,15 @@ public class TicketView extends View {
         initElements();
     }
 
+    public int getDividerPadding() {
+        return mDividerPadding;
+    }
+
+    public void setDividerPadding(int mDividerPadding) {
+        this.mDividerPadding = mDividerPadding;
+        initElements();
+    }
+
     public int getDividerColor() {
         return mDividerColor;
     }
