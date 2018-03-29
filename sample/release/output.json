@@ -1,1 +1,1 @@
-[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":1},"path":"sample-release.apk","properties":{"packageId":"com.vipulasri.ticketview.sample","split":"","minSdkVersion":"15"}}]
+[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":3,"versionName":"1.0","enabled":true,"outputFile":"sample-release.apk","fullName":"release","baseName":"release"},"path":"sample-release.apk","properties":{}}]
