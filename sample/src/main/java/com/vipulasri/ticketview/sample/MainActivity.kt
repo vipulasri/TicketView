@@ -56,7 +56,7 @@ class MainActivity : BaseActivity() {
     private fun initOptionsBottomSheet() {
         val behavior = BottomSheetBehavior.from<View>(bottomSheet)
 
-        view_options_header.setOnClickListener(View.OnClickListener {
+        view_options_header.setOnClickListener({
             if (behavior!!.state == BottomSheetBehavior.STATE_COLLAPSED) {
                 behavior.state = BottomSheetBehavior.STATE_EXPANDED
             } else {
@@ -101,7 +101,7 @@ class MainActivity : BaseActivity() {
 
         //background properties
 
-        image_background_color.setOnClickListener(View.OnClickListener {
+        image_background_color.setOnClickListener({
             showColorPicker(ticketView.backgroundColor, image_background_color)
         })
 
@@ -128,14 +128,14 @@ class MainActivity : BaseActivity() {
 
         ticketView.isShowBorder = false
         checkbox_show_border.isChecked = false
-        checkbox_show_border.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
-            ticketView.isShowBorder = b
+        checkbox_show_border.setOnCheckedChangeListener({ compoundButton, checked ->
+            ticketView.isShowBorder = checked
         })
 
         seekBar_border_width.progress = Utils.pxToDp(ticketView.borderWidth.toFloat(), this)
         seekBar_border_width.setOnProgressChangeListener(progressChangeListener)
 
-        image_border_color.setOnClickListener(View.OnClickListener {
+        image_border_color.setOnClickListener({
             showColorPicker(ticketView.borderColor, image_border_color)
         })
 
@@ -143,11 +143,11 @@ class MainActivity : BaseActivity() {
 
         ticketView.isShowDivider = true
         checkbox_show_divider.isChecked = true
-        checkbox_show_divider.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
-            ticketView.isShowDivider = b
+        checkbox_show_divider.setOnCheckedChangeListener({ compoundButton, checked ->
+            ticketView.isShowDivider = checked
         })
 
-        image_divider_color.setOnClickListener(View.OnClickListener {
+        image_divider_color.setOnClickListener({
             showColorPicker(ticketView.dividerColor, image_divider_color)
         })
 
@@ -213,7 +213,7 @@ class MainActivity : BaseActivity() {
                 .setSelectedColor(selectedColor)
                 .setDismissOnColorSelected(true)
                 .setOutlineWidth(1)
-                .setOnColorSelectedListener(SpectrumDialog.OnColorSelectedListener { positiveResult, color ->
+                .setOnColorSelectedListener({ positiveResult, color ->
                     if (positiveResult) {
                         colorView.background.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
 
@@ -241,10 +241,10 @@ class MainActivity : BaseActivity() {
                 R.id.seekBar_border_width -> ticketView.borderWidth = valueInDp
                 R.id.seekBar_scallop_radius -> ticketView.scallopRadius = valueInDp
                 R.id.seekBar_divider_width -> ticketView.dividerWidth = valueInDp
+                R.id.seekBar_divider_padding -> ticketView.dividerPadding = valueInDp
                 R.id.seekBar_divider_dash_length -> ticketView.dividerDashLength = valueInDp
                 R.id.seekBar_divider_dash_gap -> ticketView.dividerDashGap = valueInDp
                 R.id.seekBar_corner_radius -> ticketView.cornerRadius = valueInDp
-                R.id.seekBar_divider_padding -> ticketView.dividerPadding = valueInDp
             }
         }
 
