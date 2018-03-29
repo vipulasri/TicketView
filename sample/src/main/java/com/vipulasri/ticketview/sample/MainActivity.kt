@@ -172,6 +172,9 @@ class MainActivity : BaseActivity() {
         seekBar_divider_width.progress = Utils.pxToDp(ticketView.dividerWidth.toFloat(), this)
         seekBar_divider_width.setOnProgressChangeListener(progressChangeListener)
 
+        seekBar_divider_padding.progress = Utils.pxToDp(ticketView.dividerPadding.toFloat(), this)
+        seekBar_divider_padding.setOnProgressChangeListener(progressChangeListener)
+
         seekBar_divider_dash_length.progress = Utils.pxToDp(ticketView.dividerDashLength.toFloat(), this)
         seekBar_divider_dash_length.setOnProgressChangeListener(progressChangeListener)
 
@@ -241,6 +244,7 @@ class MainActivity : BaseActivity() {
                 R.id.seekBar_divider_dash_length -> ticketView.dividerDashLength = valueInDp
                 R.id.seekBar_divider_dash_gap -> ticketView.dividerDashGap = valueInDp
                 R.id.seekBar_corner_radius -> ticketView.cornerRadius = valueInDp
+                R.id.seekBar_divider_padding -> ticketView.dividerPadding = valueInDp
             }
         }
 

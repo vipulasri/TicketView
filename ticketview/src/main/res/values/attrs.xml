@@ -3,30 +3,31 @@
 
     <declare-styleable name="TicketView">
         <attr name="orientation" format="enum">
-            <enum name="horizontal" value="0"/>
-            <enum name="vertical" value="1"/>
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
         </attr>
-        <attr name="backgroundColor" format="color"/>
-        <attr name="scallopRadius" format="dimension"/>
-        <attr name="scallopPositionPercent" format="float"/>
-        <attr name="showBorder" format="boolean"/>
-        <attr name="borderWidth" format="dimension"/>
-        <attr name="borderColor" format="color"/>
-        <attr name="showDivider" format="boolean"/>
-        <attr name="dividerWidth" format="dimension"/>
-        <attr name="dividerColor" format="color"/>
+        <attr name="backgroundColor" format="color" />
+        <attr name="scallopRadius" format="dimension" />
+        <attr name="scallopPositionPercent" format="float" />
+        <attr name="showBorder" format="boolean" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="showDivider" format="boolean" />
+        <attr name="dividerWidth" format="dimension" />
+        <attr name="dividerPadding" format="dimension" />
+        <attr name="dividerColor" format="color" />
         <attr name="dividerType" format="enum">
-            <enum name="normal" value="0"/>
-            <enum name="dash" value="1"/>
+            <enum name="normal" value="0" />
+            <enum name="dash" value="1" />
         </attr>
-        <attr name="dividerDashGap" format="dimension"/>
-        <attr name="dividerDashLength" format="dimension"/>
+        <attr name="dividerDashGap" format="dimension" />
+        <attr name="dividerDashLength" format="dimension" />
         <attr name="cornerType" format="enum">
-            <enum name="normal" value="0"/>
-            <enum name="rounded" value="1"/>
-            <enum name="scallop" value="2"/>
+            <enum name="normal" value="0" />
+            <enum name="rounded" value="1" />
+            <enum name="scallop" value="2" />
         </attr>
-        <attr name="cornerRadius" format="dimension"/>
+        <attr name="cornerRadius" format="dimension" />
         <attr name="android:elevation" />
         <attr name="ticketElevation" format="dimension" />
     </declare-styleable>
