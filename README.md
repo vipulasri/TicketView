@@ -70,6 +70,7 @@ If you Watch this repository, GitHub will send you an email every time I publish
         app:scallopPositionPercent="50"
         app:showDivider="true"
         app:dividerType="dash"
+        app:dividerPadding="0dp"
         app:ticketElevation="14dp"/>
 ```
 
@@ -133,6 +134,11 @@ If you Watch this repository, GitHub will send you an email every time I publish
         <td>app:dividerWidth="2dp"</td>
         <td>2dp</td>
         <td>sets divider width</td>
+    </tr>
+    <tr>
+        <td>app:dividerPadding="0dp"</td>
+        <td>10dp</td>
+        <td>sets divider padding</td>
     </tr>
     <tr>
         <td>app:dividerDashGap="4dp"</td>
