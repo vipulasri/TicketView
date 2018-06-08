@@ -83,57 +83,68 @@ If you Watch this repository, GitHub will send you an email every time I publish
     <tr>
         <td>app:orientation="vertical"</td>
         <td>horizontal</td>
-        <td>sets orientation of divider and scallop</td>
+        <td>sets orientation of divider and scallop   
+        *设置小票分割段方向*</td>
     </tr>
     <tr>
         <td>app:backgroundColor="@android:color/black"</td>
         <td>white</td>
-        <td>sets background color</td>
+        <td>sets background color   
+        *设置背景颜色*</td>
     </tr>
     <tr>
         <td>app:scallopRadius="10dp"</td>
         <td>20dp</td>
-        <td>sets scallop radius</td>
+        <td>sets scallop radius   
+        *设置小票分割段的内凹圆角*</td>
     </tr>
     <tr>
         <td>app:scallopPositionPercent="50"</td>
         <td>50</td>
-        <td>sets position of scallop and divider</td>
+        <td>sets position of scallop and divider   
+        *设置小票分割段位置（由上至下、由左至右，百分比值）*</td>
     </tr>
     <tr>
         <td>app:showBorder="false"</td>
         <td>false</td>
-        <td>shows border if `true`</td>
+        <td>shows border if `true`   
+        *是否显示边框*</td>
     </tr>
     <tr>
         <td>app:borderWidth="4dp"</td>
         <td>2dp</td>
-        <td>sets border width</td>
+        <td>sets border width   
+        *设置边框宽度*</td>
     </tr>
     <tr>
         <td>app:borderColor="@color/grey"</td>
         <td>black</td>
-        <td>sets border color</td>
+        <td>sets border color   
+        *设置边框颜色*</td>
     </tr>
     <tr>
         <td>app:showDivider="true"</td>
         <td>false</td>
-        <td>shows divider if `true`</td>
+        <td>shows divider if `true`   
+        *是否显示分隔线*</td>
     </tr>
     <tr>
         <td>app:dividerType="dash"</td>
         <td>normal</td>
-        <td>sets type of divider ie `normal` or `dash`</td>
+        <td>sets type of divider ie `normal` or `dash`   
+        *设置分隔线为实线或虚线*</td>
     </tr>
     <tr>
         <td>app:dividerColor="@color/colorAccent"</td>
         <td>dark gray</td>
-        <td>sets divider color</td>
+        <td>sets divider color   
+        *设置分隔线颜色*</td>
     </tr>
     <tr>
         <td>app:dividerWidth="2dp"</td>
         <td>2dp</td>
-        <td>sets divider width</td>
+        <td>sets divider width   
+        *设置分隔线宽度*</td>
     </tr>
     <tr>
         <td>app:dividerPadding="0dp"</td>
@@ -143,27 +154,32 @@ If you Watch this repository, GitHub will send you an email every time I publish
     <tr>
         <td>app:dividerDashGap="4dp"</td>
         <td>4dp</td>
-        <td>sets divider dash gap</td>
+        <td>sets divider dash gap   
+        *设置分隔线虚线间距*</td>
     </tr>
     <tr>
         <td>app:dividerDashLength="8dp"</td>
         <td>8dp</td>
-        <td>sets divider dash length</td>
+        <td>sets divider dash length   
+        *设置分隔线虚线段长度*</td>
     </tr>
     <tr>
         <td>app:cornerType="rounded"</td>
         <td>normal</td>
-        <td>sets type of corner ie `normal` or `rounded` or `scallop`</td>
+        <td>sets type of corner ie `normal` or `rounded` or `scallop`   
+        *设置边角类型为无或圆角或内凹圆角*</td>
     </tr>
     <tr>
         <td>app:cornerRadius="15dp"</td>
         <td>4dp</td>
-        <td>sets corner radius if corner rounder or scallop</td>
+        <td>sets corner radius if corner rounder or scallop   
+        *设置边角的圆角度数*</td>
     </tr>
     <tr>
         <td>app:ticketElevation="14dp"</td>
         <td>0dp</td>
-        <td>sets elevation to ticket view on android jellybean and above</td>
+        <td>sets elevation to ticket view on android jellybean and above   
+        *设置小票阴影*</td>
     </tr>
     </table>
  
