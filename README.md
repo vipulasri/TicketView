@@ -64,13 +64,13 @@ If you Watch this repository, GitHub will send you an email every time I publish
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/ticketView"
-        app:orientation="vertical"
-        app:scallopRadius="10dp"
-        app:showBorder="false"
-        app:scallopPositionPercent="50"
-        app:showDivider="true"
-        app:dividerType="dash"
-        app:dividerPadding="0dp"
+        app:ticketOrientation="vertical"
+        app:ticketScallopRadius="10dp"
+        app:ticketShowBorder="false"
+        app:ticketScallopPositionPercent="50"
+        app:ticketShowDivider="true"
+        app:ticketDividerType="dash"
+        app:ticketDividerPadding="0dp"
         app:ticketElevation="14dp"/>
 ```
 
@@ -81,82 +81,82 @@ If you Watch this repository, GitHub will send you an email every time I publish
     <th>Default Value</th>
     <th>Description</th>
     <tr>
-        <td>app:orientation="vertical"</td>
+        <td>app:ticketOrientation="vertical"</td>
         <td>horizontal</td>
         <td>sets orientation of divider and scallop</td>
     </tr>
     <tr>
-        <td>app:backgroundColor="@android:color/black"</td>
+        <td>app:ticketBackgroundColor="@android:color/black"</td>
         <td>white</td>
         <td>sets background color</td>
     </tr>
     <tr>
-        <td>app:scallopRadius="10dp"</td>
+        <td>app:ticketScallopRadius="10dp"</td>
         <td>20dp</td>
         <td>sets scallop radius</td>
     </tr>
     <tr>
-        <td>app:scallopPositionPercent="50"</td>
+        <td>app:ticketScallopPositionPercent="50"</td>
         <td>50</td>
         <td>sets position of scallop and divider</td>
     </tr>
     <tr>
-        <td>app:showBorder="false"</td>
+        <td>app:ticketShowBorder="false"</td>
         <td>false</td>
         <td>shows border if `true`</td>
     </tr>
     <tr>
-        <td>app:borderWidth="4dp"</td>
+        <td>app:ticketBorderWidth="4dp"</td>
         <td>2dp</td>
         <td>sets border width</td>
     </tr>
     <tr>
-        <td>app:borderColor="@color/grey"</td>
+        <td>app:ticketBorderColor="@color/grey"</td>
         <td>black</td>
         <td>sets border color</td>
     </tr>
     <tr>
-        <td>app:showDivider="true"</td>
+        <td>app:ticketShowDivider="true"</td>
         <td>false</td>
         <td>shows divider if `true`</td>
     </tr>
     <tr>
-        <td>app:dividerType="dash"</td>
+        <td>app:ticketDividerType="dash"</td>
         <td>normal</td>
         <td>sets type of divider ie `normal` or `dash`</td>
     </tr>
     <tr>
-        <td>app:dividerColor="@color/colorAccent"</td>
+        <td>app:ticketDividerColor="@color/colorAccent"</td>
         <td>dark gray</td>
         <td>sets divider color</td>
     </tr>
     <tr>
-        <td>app:dividerWidth="2dp"</td>
+        <td>app:ticketDividerWidth="2dp"</td>
         <td>2dp</td>
         <td>sets divider width</td>
     </tr>
     <tr>
-        <td>app:dividerPadding="0dp"</td>
+        <td>app:ticketDividerPadding="0dp"</td>
         <td>10dp</td>
         <td>sets divider padding</td>
     </tr>
     <tr>
-        <td>app:dividerDashGap="4dp"</td>
+        <td>app:ticketDividerDashGap="4dp"</td>
         <td>4dp</td>
         <td>sets divider dash gap</td>
     </tr>
     <tr>
-        <td>app:dividerDashLength="8dp"</td>
+        <td>app:ticketDividerDashLength="8dp"</td>
         <td>8dp</td>
         <td>sets divider dash length</td>
     </tr>
     <tr>
-        <td>app:cornerType="rounded"</td>
+        <td>app:ticketCornerType="rounded"</td>
         <td>normal</td>
         <td>sets type of corner ie `normal` or `rounded` or `scallop`</td>
     </tr>
     <tr>
-        <td>app:cornerRadius="15dp"</td>
+        <td>app:ticketCornerRadius="15dp"</td>
         <td>4dp</td>
         <td>sets corner radius if corner rounder or scallop</td>
     </tr>
