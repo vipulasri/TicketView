@@ -7,19 +7,19 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <com.vipulasri.ticketview.TicketView
-        app:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/ticketView"
+        app:ticketOrientation="vertical"
         app:ticketElevation="12dp"
-        app:scallopRadius="10dp"
-        app:dividerPadding="0dp"
-        app:showBorder="false"
-        app:scallopPositionPercent="50"
-        app:showDivider="true"
-        app:dividerType="dash"/>
+        app:ticketScallopRadius="10dp"
+        app:ticketDividerPadding="0dp"
+        app:ticketShowBorder="false"
+        app:ticketScallopPositionPercent="50"
+        app:ticketShowDivider="true"
+        app:ticketDividerType="dash"/>
 
 </RelativeLayout>

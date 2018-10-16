@@ -31,19 +31,19 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.vipulasri.ticketview.TicketView
-            app:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/ticketView"
-            app:scallopRadius="10dp"
-            app:scallopPositionPercent="60"
-            app:showBorder="false"
-            app:borderWidth="1dp"
-            app:borderColor="@color/colorAccent"
-            app:showDivider="true"
-            app:dividerPadding="0dp"
-            app:dividerType="dash"
-            app:cornerType="rounded"
+            app:ticketOrientation="horizontal"
+            app:ticketScallopRadius="10dp"
+            app:ticketScallopPositionPercent="60"
+            app:ticketShowBorder="false"
+            app:ticketBorderWidth="1dp"
+            app:ticketBorderColor="@color/colorAccent"
+            app:ticketShowDivider="true"
+            app:ticketDividerPadding="0dp"
+            app:ticketDividerType="dash"
+            app:ticketCornerType="rounded"
             app:ticketElevation="8dp"/>
 
         <android.support.constraint.Guideline
