@@ -30,7 +30,7 @@ For information : checkout [Sample App Code](https://github.com/vipulasri/Ticket
 
 ``` gradle
 dependencies {
-    compile 'com.vipulasri:ticketview:1.0.5'
+    compile 'com.vipulasri:ticketview:1.0.7'
 }
 ```
 

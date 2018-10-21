@@ -29,6 +29,8 @@ import kotlinx.android.synthetic.main.item_corner_options.*
 
 class MainActivity : BaseActivity() {
 
+    private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,17 +56,17 @@ class MainActivity : BaseActivity() {
 
 
     private fun initOptionsBottomSheet() {
-        val behavior = BottomSheetBehavior.from<View>(bottomSheet)
+        mBottomSheetBehavior = BottomSheetBehavior.from<View>(bottomSheet)
 
-        view_options_header.setOnClickListener({
-            if (behavior!!.state == BottomSheetBehavior.STATE_COLLAPSED) {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        view_options_header.setOnClickListener {
+            if (mBottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
+                mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             } else {
-                behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
-        })
+        }
 
-        behavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+        mBottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(@NonNull bottomSheet: View, newState: Int) {
                 when(newState) {
                     BottomSheetBehavior.STATE_COLLAPSED -> image_toggle.setImageResource(R.drawable.ic_expand_less_black_24dp)
@@ -89,7 +91,7 @@ class MainActivity : BaseActivity() {
             TicketView.Orientation.VERTICAL -> radioButton_vertical.isChecked = true
         }
 
-        radioGroup_orientation.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        radioGroup_orientation.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId) {
                 R.id.radioButton_horizontal -> ticketView.orientation = TicketView.Orientation.HORIZONTAL
                 R.id.radioButton_vertical -> ticketView.orientation = TicketView.Orientation.VERTICAL
@@ -97,13 +99,13 @@ class MainActivity : BaseActivity() {
                     ticketView.orientation = TicketView.Orientation.HORIZONTAL
                 }
             }
-        })
+        }
 
         //background properties
 
-        image_background_color.setOnClickListener({
+        image_background_color.setOnClickListener {
             showColorPicker(ticketView.backgroundColor, image_background_color)
-        })
+        }
 
         seekBar_elevation.setOnProgressChangeListener(progressChangeListener)
 
@@ -128,28 +130,28 @@ class MainActivity : BaseActivity() {
 
         ticketView.isShowBorder = false
         checkbox_show_border.isChecked = false
-        checkbox_show_border.setOnCheckedChangeListener({ compoundButton, checked ->
+        checkbox_show_border.setOnCheckedChangeListener { compoundButton, checked ->
             ticketView.isShowBorder = checked
-        })
+        }
 
         seekBar_border_width.progress = Utils.pxToDp(ticketView.borderWidth.toFloat(), this)
         seekBar_border_width.setOnProgressChangeListener(progressChangeListener)
 
-        image_border_color.setOnClickListener({
+        image_border_color.setOnClickListener {
             showColorPicker(ticketView.borderColor, image_border_color)
-        })
+        }
 
         //divider properties
 
         ticketView.isShowDivider = true
         checkbox_show_divider.isChecked = true
-        checkbox_show_divider.setOnCheckedChangeListener({ compoundButton, checked ->
+        checkbox_show_divider.setOnCheckedChangeListener { compoundButton, checked ->
             ticketView.isShowDivider = checked
-        })
+        }
 
-        image_divider_color.setOnClickListener({
+        image_divider_color.setOnClickListener {
             showColorPicker(ticketView.dividerColor, image_divider_color)
-        })
+        }
 
         spinner_divider_type.setSelection(1)
         spinner_divider_type.onItemSelectedListener = object : OnItemSelectedListener {
@@ -213,7 +215,7 @@ class MainActivity : BaseActivity() {
                 .setSelectedColor(selectedColor)
                 .setDismissOnColorSelected(true)
                 .setOutlineWidth(1)
-                .setOnColorSelectedListener({ positiveResult, color ->
+                .setOnColorSelectedListener { positiveResult, color ->
                     if (positiveResult) {
                         colorView.background.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
 
@@ -227,7 +229,7 @@ class MainActivity : BaseActivity() {
                         }
 
                     }
-                }).build().show(supportFragmentManager, "ColorPicker")
+                }.build().show(supportFragmentManager, "ColorPicker")
     }
 
     private var progressChangeListener: DiscreteSeekBar.OnProgressChangeListener = object : DiscreteSeekBar.OnProgressChangeListener {
@@ -254,6 +256,14 @@ class MainActivity : BaseActivity() {
 
         override fun onStopTrackingTouch(discreteSeekBar: DiscreteSeekBar) {
 
+        }
+    }
+
+    override fun onBackPressed() {
+        if(mBottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+            mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        } else {
+            super.onBackPressed()
         }
     }
 }
