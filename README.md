@@ -40,7 +40,7 @@ dependencies {
 <dependency>
     <groupId>com.vipulasri</groupId>
     <artifactId>ticketview</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.7</version>
     <type>pom</type>
 </dependency>
 ```
