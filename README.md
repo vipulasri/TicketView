@@ -177,6 +177,11 @@ If you Watch this repository, GitHub will send you an email every time I publish
 If you're using this library in your app and you'd like to list it here,
 Please let me know via [email](mailto:vipulasri.2007@gmail.com), [pull requests](https://github.com/vipulasri/TicketView/pulls) or [issues](https://github.com/vipulasri/TicketView/issues).
 
+## Features of library
+*  Good Orientation
+*  Better User Experience
+*  Better Elevation 
+
 ## Special Thanks
 
 [**Nick Butcher**](https://github.com/nickbutcher) for helping me out with TicketView Shadow/Elevation.
