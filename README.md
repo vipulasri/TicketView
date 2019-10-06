@@ -167,7 +167,7 @@ If you Watch this repository, GitHub will send you an email every time I publish
     </tr>
     </table>
  
-## Apps that use this library
+## Apps that use this library:
 
 * [Open. Yoga](https://play.google.com/store/apps/details?id=com.labfoodandfriends.nikitagudkovs.jlogOpen_yoga)
 * [Open. Gym](https://play.google.com/store/apps/details?id=com.labfoodandfriends.nikitagudkovs.jlog_gym)
