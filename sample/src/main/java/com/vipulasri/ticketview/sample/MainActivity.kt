@@ -2,14 +2,14 @@ package com.vipulasri.ticketview.sample
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import android.view.View
 import com.vipulasri.ticketview.TicketView
 
 import kotlinx.android.synthetic.main.content_main.*
 import com.thebluealliance.spectrum.SpectrumDialog
 import android.graphics.PorterDuff
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem

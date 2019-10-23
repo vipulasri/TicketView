@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         style="@style/Heading"
         android:text="@string/corners" />
 
@@ -16,13 +16,13 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/type"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
 
-        <android.support.v7.widget.AppCompatSpinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:id="@+id/spinner_corner_type"
@@ -38,7 +38,7 @@
        android:gravity="center_vertical"
        android:orientation="horizontal">
 
-       <android.support.v7.widget.AppCompatTextView
+       <androidx.appcompat.widget.AppCompatTextView
            style="@style/Label"
            android:text="@string/radius" />
 

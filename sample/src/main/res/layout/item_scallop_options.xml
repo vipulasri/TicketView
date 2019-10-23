@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         style="@style/Heading"
         android:text="@string/scallop" />
 
@@ -16,7 +16,7 @@
        android:gravity="center_vertical"
        android:orientation="horizontal">
 
-       <android.support.v7.widget.AppCompatTextView
+       <androidx.appcompat.widget.AppCompatTextView
            style="@style/Label"
            android:text="@string/radius" />
 
@@ -36,11 +36,11 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/Label"
             android:text="@string/position_percent" />
 
-        <android.support.v7.widget.AppCompatSpinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:id="@+id/spinner_scallop_position"
