@@ -1,115 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_alignParentBottom="true"
     android:background="@android:color/white"
+    android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="?attr/actionBarSize"
-    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <LinearLayout
+        android:id="@+id/view_options_header"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/view_options_header"
-        android:paddingLeft="10dp"
         android:background="#F3F3F3"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="10dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/ticket_attributes"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_toggle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/image_toggle"
             android:padding="10dp"
             app:srcCompat="@drawable/ic_expand_less_black_24dp" />
 
     </LinearLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:paddingBottom="10dp"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/Heading"
                 android:text="@string/orientation" />
 
             <RadioGroup
+                android:id="@+id/radioGroup_orientation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:id="@+id/radioGroup_orientation"
-                android:checkedButton="@id/radioButton_horizontal">
+                android:checkedButton="@id/radioButton_horizontal"
+                android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/radioButton_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/radioButton_horizontal"
                     android:text="@string/horizontal"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/radioButton_vertical"
                     android:text="@string/vertical"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
             </RadioGroup>
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <include layout="@layout/item_background_options"/>
+            <include layout="@layout/item_background_options" />
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <include layout="@layout/item_scallop_options"/>
+            <include layout="@layout/item_scallop_options" />
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <include layout="@layout/item_border_options"/>
+            <include layout="@layout/item_border_options" />
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <include layout="@layout/item_divider_options"/>
+            <include layout="@layout/item_divider_options" />
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <include layout="@layout/item_corner_options"/>
+            <include layout="@layout/item_corner_options" />
 
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

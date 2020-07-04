@@ -1,22 +1,18 @@
 apply plugin: 'com.android.library'
-
+group = 'github.com/immujahidkhan'
 ext {
     bintrayRepo = 'maven'
     bintrayRepoName = 'TicketView'
-
-    groupId = 'com.vipulasri'
+    groupId = 'github.com/immujahidkhan'
     libraryName = 'TicketView'
     artifact = 'ticketview'
-    libraryVersion = '1.0.7'
+    libraryVersion = '0.0.1'
     libraryDescription = 'A custom view to implement TicketView in android.'
-
     siteUrl = 'https://github.com/vipulasri/TicketView'
     gitUrl = 'https://github.com/vipulasri/TicketView.git'
-
     developerId = 'vipulasri'
     developerName = 'Vipul Asri'
     developerEmail = 'vipulasri.2007@gmail.com'
-
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     licenses = ["Apache-2.0"]
@@ -29,7 +25,7 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode 7
-        versionName "1.0.7"
+        versionName "1.0.0"
     }
 
     buildTypes {
@@ -43,7 +39,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:support-annotations:$versions.supportLibrary"
+    implementation 'androidx.annotation:annotation:1.1.0'
 }
 
 apply from: 'https://raw.githubusercontent.com/vipulasri/BintrayHelper/master/install.gradle'

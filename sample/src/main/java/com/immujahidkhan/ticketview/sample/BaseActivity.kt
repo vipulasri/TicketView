@@ -1,9 +1,10 @@
-package com.vipulasri.ticketview.sample
+package com.immujahidkhan.ticketview.sample
 
 import android.graphics.drawable.Drawable
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 open class BaseActivity : AppCompatActivity() {
 

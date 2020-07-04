@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.vipulasri.ticketview.sample.MainActivity">
+    tools:context="com.immujahidkhan.ticketview.sample.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="60dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.vipulasri.ticketview.TicketView
+        <com.immujahidkhan.ticketview.TicketView
+            android:id="@+id/ticketView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/ticketView"
-            app:ticketOrientation="horizontal"
-            app:ticketScallopRadius="10dp"
-            app:ticketScallopPositionPercent="60"
-            app:ticketShowBorder="false"
-            app:ticketBorderWidth="1dp"
             app:ticketBorderColor="@color/colorAccent"
-            app:ticketShowDivider="true"
+            app:ticketBorderWidth="1dp"
+            app:ticketCornerType="rounded"
             app:ticketDividerPadding="0dp"
             app:ticketDividerType="dash"
-            app:ticketCornerType="rounded"
-            app:ticketElevation="8dp"/>
+            app:ticketElevation="8dp"
+            app:ticketOrientation="horizontal"
+            app:ticketScallopPositionPercent="60"
+            app:ticketScallopRadius="10dp"
+            app:ticketShowBorder="false"
+            app:ticketShowDivider="true" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,64 +56,64 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="10dp"
             android:orientation="vertical"
+            android:padding="10dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:paddingTop="30dp"
                 android:paddingLeft="30dp"
+                android:paddingTop="30dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 app:srcCompat="@drawable/ic_qr_code" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/movie_ticket_number"
-                android:textColor="@color/material_grey_400"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@color/material_grey_400" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="18dp"
-            android:orientation="vertical"
             android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/movie_title"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movie_duration"
-                android:textColor="@color/material_grey_500"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@color/material_grey_500" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movie_genre"
-                android:textColor="@color/material_grey_500"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@color/material_grey_500" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,19 +128,19 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/date"
-                        android:textColor="@color/material_light_black"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/material_light_black" />
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/movie_date"
-                        android:textColor="@color/material_grey_500"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/material_grey_500" />
 
                 </LinearLayout>
 
@@ -149,7 +149,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@color/material_grey_300"/>
+                    android:background="@color/material_grey_300" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -158,19 +158,19 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/time"
-                        android:textColor="@color/material_light_black"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/material_light_black" />
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/movie_time"
-                        android:textColor="@color/material_grey_500"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/material_grey_500" />
 
                 </LinearLayout>
 
@@ -179,7 +179,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@color/material_grey_300"/>
+                    android:background="@color/material_grey_300" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -188,19 +188,19 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/seat"
-                        android:textColor="@color/material_light_black"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/material_light_black" />
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/movie_seat"
-                        android:textColor="@color/material_grey_500"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/material_grey_500" />
 
                 </LinearLayout>
 
@@ -208,6 +208,6 @@
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package com.vipulasri.ticketview;
+package com.immujahidkhan.ticketview;
 
 import android.content.Context;
 import android.content.res.Resources;

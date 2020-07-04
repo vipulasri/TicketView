@@ -1,4 +1,4 @@
-package com.vipulasri.ticketview.sample
+package com.immujahidkhan.ticketview.sample
 
 import android.content.Context
 import android.content.Intent

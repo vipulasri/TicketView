@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vipulasri.ticketview.sample">
+    package="com.immujahidkhan.ticketview.sample">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.immujahidkhan.ticketview.sample.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ExampleActivity"
+        <activity android:name="com.immujahidkhan.ticketview.sample.ExampleActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
 

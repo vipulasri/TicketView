@@ -21,12 +21,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    
+
     <style name="Label" parent="Base.TextAppearance.AppCompat.Caption">
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    
+
     <style name="DiscreteSeekBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

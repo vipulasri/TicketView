@@ -1,15 +1,15 @@
-package com.vipulasri.ticketview.sample
+package com.immujahidkhan.ticketview.sample
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import android.view.View
-import com.vipulasri.ticketview.TicketView
+import com.immujahidkhan.ticketview.TicketView
 
 import kotlinx.android.synthetic.main.content_main.*
 import com.thebluealliance.spectrum.SpectrumDialog
 import android.graphics.PorterDuff
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -18,11 +18,9 @@ import android.widget.ImageView
 import kotlinx.android.synthetic.main.item_background_options.*
 import kotlinx.android.synthetic.main.item_border_options.*
 import kotlinx.android.synthetic.main.item_divider_options.*
-import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.item_scallop_options.*
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.CompoundButton
 import kotlinx.android.synthetic.main.bottomsheet_ticket_attributes.*
 import kotlinx.android.synthetic.main.item_corner_options.*
 

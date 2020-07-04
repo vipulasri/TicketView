@@ -6,20 +6,20 @@
     android:background="@color/colorBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.vipulasri.ticketview.TicketView
+    <com.immujahidkhan.ticketview.TicketView
+        android:id="@+id/ticketView"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
         android:layout_marginRight="20dp"
-        android:id="@+id/ticketView"
-        app:ticketOrientation="vertical"
-        app:ticketElevation="12dp"
-        app:ticketScallopRadius="10dp"
         app:ticketDividerPadding="0dp"
-        app:ticketShowBorder="false"
+        app:ticketDividerType="dash"
+        app:ticketElevation="12dp"
+        app:ticketOrientation="vertical"
         app:ticketScallopPositionPercent="50"
-        app:ticketShowDivider="true"
-        app:ticketDividerType="dash"/>
+        app:ticketScallopRadius="10dp"
+        app:ticketShowBorder="false"
+        app:ticketShowDivider="true" />
 
 </RelativeLayout>

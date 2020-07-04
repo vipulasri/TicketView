@@ -1,4 +1,4 @@
-package com.vipulasri.ticketview.sample;
+package com.immujahidkhan.ticketview;
 
 import org.junit.Test;
 
