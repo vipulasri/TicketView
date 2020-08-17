@@ -30,6 +30,8 @@
         <attr name="ticketCornerRadius" format="dimension" />
         <attr name="android:elevation" />
         <attr name="ticketElevation" format="dimension" />
+        <attr name="ticketBackgroundAboveDivider" format="reference" />
+        <attr name="ticketBackgroundBelowDivider" format="reference" />
     </declare-styleable>
 
 </resources>

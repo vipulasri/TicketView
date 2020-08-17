@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TicketView.iml" filepath="$PROJECT_DIR$/TicketView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/TicketView-sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/TicketView-sample.iml" group="TicketView/sample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ticketview/com.vipulasri-ticketview.iml" filepath="$PROJECT_DIR$/.idea/modules/ticketview/com.vipulasri-ticketview.iml" group="TicketView/ticketview" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shishankticket-TicketView.iml" filepath="$PROJECT_DIR$/.idea/modules/shishankticket-TicketView.iml" group="TicketView" />
       <module fileurl="file://$PROJECT_DIR$/ticketview/ticketview.iml" filepath="$PROJECT_DIR$/ticketview/ticketview.iml" />
     </modules>
   </component>
