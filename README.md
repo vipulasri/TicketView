@@ -166,6 +166,16 @@ If you Watch this repository, GitHub will send you an email every time I publish
         <td>0dp</td>
         <td>sets elevation to ticket view on android jellybean and above</td>
     </tr>
+    <tr>
+        <td>app:ticketBackgroundBelowDivider</td>
+         <td>none</td>
+         <td>sets background to ticket view below divider on android jellybean and above</td>
+        </tr>
+        <tr>
+          <td>app:ticketBackgroundAboveDivider</td>
+          <td>none</td>
+          <td>sets background to ticket view above divider on android jellybean and above</td>
+            </tr>
     </table>
  
 ## Apps that use this library
