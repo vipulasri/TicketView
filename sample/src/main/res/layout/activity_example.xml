@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/ticketView"
-            app:ticketOrientation="vertical"
+            app:ticketOrientation="horizontal"
             app:ticketScallopRadius="10dp"
             app:ticketScallopPositionPercent="60"
             app:ticketShowBorder="false"
