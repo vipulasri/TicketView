@@ -7,7 +7,7 @@ ext {
     groupId = 'com.vipulasri'
     libraryName = 'TicketView'
     artifact = 'ticketview'
-    libraryVersion = '1.0.8'
+    libraryVersion = '1.0.9'
     libraryDescription = 'A custom view to implement TicketView in android.'
 
     siteUrl = 'https://github.com/vipulasri/TicketView'
@@ -28,8 +28,8 @@ android {
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode 8
-        versionName "1.0.8"
+        versionCode 9
+        versionName "1.0.9"
     }
 
     buildTypes {
