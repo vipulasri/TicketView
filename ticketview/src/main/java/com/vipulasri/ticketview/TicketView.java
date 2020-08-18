@@ -89,8 +89,8 @@ public class TicketView extends View {
     private Bitmap mShadow;
     private final Paint mShadowPaint = new Paint(ANTI_ALIAS_FLAG);
     private float mShadowBlurRadius = 0f;
-    private Drawable mDividerAboveBackground;
-    private Drawable mDividerBelowBackground;
+    private Drawable mBackgroundBeforeDivider;
+    private Drawable mBackgroundAfterDivider;
 
     public TicketView(Context context) {
         super(context);
@@ -124,11 +124,11 @@ public class TicketView extends View {
         if (mShowDivider) {
             canvas.drawLine(mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY, mDividerPaint);
         }
-        if (mDividerBelowBackground != null) {
-            setTicketBelowBackground(canvas);
+        if (mBackgroundAfterDivider != null) {
+            setTicketBackgroundAfterDivider(canvas);
         }
-        if (mDividerAboveBackground != null) {
-            setTicketAboveBackground(canvas);
+        if (mBackgroundBeforeDivider != null) {
+            setTicketBackgroundBeforeDivider(canvas);
         }
     }
 
@@ -297,8 +297,8 @@ public class TicketView extends View {
     private void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TicketView);
-            mDividerAboveBackground = typedArray.getDrawable(R.styleable.TicketView_ticketBackgroundAboveDivider);
-            mDividerBelowBackground = typedArray.getDrawable(R.styleable.TicketView_ticketBackgroundBelowDivider);
+            mBackgroundBeforeDivider = typedArray.getDrawable(R.styleable.TicketView_ticketBackgroundBeforeDivider);
+            mBackgroundAfterDivider = typedArray.getDrawable(R.styleable.TicketView_ticketBackgroundAfterDivider);
             mOrientation = typedArray.getInt(R.styleable.TicketView_ticketOrientation, Orientation.HORIZONTAL);
             mBackgroundColor = typedArray.getColor(R.styleable.TicketView_ticketBackgroundColor, getResources().getColor(android.R.color.white));
             mScallopRadius = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketScallopRadius, Utils.dpToPx(20f, getContext()));
@@ -354,32 +354,32 @@ public class TicketView extends View {
         invalidate();
     }
 
-    private void setTicketAboveBackground(Canvas canvas) {
+    private void setTicketBackgroundBeforeDivider(Canvas canvas) {
         //getting the bound of view for setting background
         float left = getPaddingLeft() + mShadowBlurRadius;
         float right = getWidth() - getPaddingRight() - mShadowBlurRadius;
         float top = getPaddingTop() + (mShadowBlurRadius / 2);
         float bottom = getHeight() - getPaddingBottom() - mShadowBlurRadius - (mShadowBlurRadius / 2);
         if (mOrientation == Orientation.HORIZONTAL) {
-            mDividerAboveBackground.setBounds((int) left, (int) top, (int) right, (int) mDividerStopY);
+            mBackgroundBeforeDivider.setBounds((int) left, (int) top, (int) right, (int) mDividerStartY);
         } else {
-            mDividerAboveBackground.setBounds((int) left, (int) top, (int) mDividerStopX, (int) bottom);
+            mBackgroundBeforeDivider.setBounds((int) left, (int) top, (int) mDividerStartX, (int) bottom);
         }
-        mDividerAboveBackground.draw(canvas);
+        mBackgroundBeforeDivider.draw(canvas);
     }
 
-    private void setTicketBelowBackground(Canvas canvas) {
+    private void setTicketBackgroundAfterDivider(Canvas canvas) {
         //getting the bound of view for setting background
         float left = getPaddingLeft() + mShadowBlurRadius;
         float right = getWidth() - getPaddingRight() - mShadowBlurRadius;
         float top = getPaddingTop() + (mShadowBlurRadius / 2);
         float bottom = getHeight() - getPaddingBottom() - mShadowBlurRadius - (mShadowBlurRadius / 2);
         if (mOrientation == Orientation.HORIZONTAL) {
-            mDividerBelowBackground.setBounds((int) left, (int) mDividerStopY, (int) right, (int) bottom);
+            mBackgroundAfterDivider.setBounds((int) left, (int) mDividerStopY, (int) right, (int) bottom);
         } else {
-            mDividerBelowBackground.setBounds((int) mDividerStopX, (int) top, (int) right, (int) bottom);
+            mBackgroundAfterDivider.setBounds((int) mDividerStopX, (int) top, (int) right, (int) bottom);
         }
-        mDividerBelowBackground.draw(canvas);
+        mBackgroundAfterDivider.draw(canvas);
     }
 
     private void setBackgroundPaint() {
@@ -615,21 +615,21 @@ public class TicketView extends View {
         return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
     }
 
-    public Drawable getDividerAboveBackground() {
-        return mDividerAboveBackground;
+    public Drawable getBackgroundBeforeDivider() {
+        return mBackgroundBeforeDivider;
     }
 
-    public void setDividerAboveBackground(Drawable background) {
-        this.mDividerAboveBackground = background;
+    public void setBackgroundBeforeDivider(Drawable background) {
+        this.mBackgroundBeforeDivider = background;
         initElements();
     }
 
-    public Drawable getDividerBelowBackground() {
-        return mDividerBelowBackground;
+    public Drawable getBackgroundAfterDivider() {
+        return mBackgroundAfterDivider;
     }
 
-    public void setDividerBelowBackground(Drawable background) {
-        this.mDividerBelowBackground = background;
+    public void setBackgroundAfterDivider(Drawable background) {
+        this.mBackgroundAfterDivider = background;
         initElements();
     }
 }
