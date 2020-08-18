@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -88,6 +89,8 @@ public class TicketView extends View {
     private Bitmap mShadow;
     private final Paint mShadowPaint = new Paint(ANTI_ALIAS_FLAG);
     private float mShadowBlurRadius = 0f;
+    private Drawable mDividerAboveBackground;
+    private Drawable mDividerBelowBackground;
 
     public TicketView(Context context) {
         super(context);
@@ -114,11 +117,18 @@ public class TicketView extends View {
             canvas.drawBitmap(mShadow, 0f, mShadowBlurRadius / 2f, null);
         }
         canvas.drawPath(mPath, mBackgroundPaint);
+        canvas.clipPath(mPath);
         if (mShowBorder) {
             canvas.drawPath(mPath, mBorderPaint);
         }
         if (mShowDivider) {
             canvas.drawLine(mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY, mDividerPaint);
+        }
+        if (mDividerBelowBackground != null) {
+            setTicketBelowBackground(canvas);
+        }
+        if (mDividerAboveBackground != null) {
+            setTicketAboveBackground(canvas);
         }
     }
 
@@ -287,6 +297,8 @@ public class TicketView extends View {
     private void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TicketView);
+            mDividerAboveBackground = typedArray.getDrawable(R.styleable.TicketView_ticketBackgroundAboveDivider);
+            mDividerBelowBackground = typedArray.getDrawable(R.styleable.TicketView_ticketBackgroundBelowDivider);
             mOrientation = typedArray.getInt(R.styleable.TicketView_ticketOrientation, Orientation.HORIZONTAL);
             mBackgroundColor = typedArray.getColor(R.styleable.TicketView_ticketBackgroundColor, getResources().getColor(android.R.color.white));
             mScallopRadius = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketScallopRadius, Utils.dpToPx(20f, getContext()));
@@ -340,6 +352,34 @@ public class TicketView extends View {
 
         mDirty = true;
         invalidate();
+    }
+
+    private void setTicketAboveBackground(Canvas canvas) {
+        //getting the bound of view for setting background
+        float left = getPaddingLeft() + mShadowBlurRadius;
+        float right = getWidth() - getPaddingRight() - mShadowBlurRadius;
+        float top = getPaddingTop() + (mShadowBlurRadius / 2);
+        float bottom = getHeight() - getPaddingBottom() - mShadowBlurRadius - (mShadowBlurRadius / 2);
+        if (mOrientation == Orientation.HORIZONTAL) {
+            mDividerAboveBackground.setBounds((int) left, (int) top, (int) right, (int) mDividerStopY);
+        } else {
+            mDividerAboveBackground.setBounds((int) left, (int) top, (int) mDividerStopX, (int) bottom);
+        }
+        mDividerAboveBackground.draw(canvas);
+    }
+
+    private void setTicketBelowBackground(Canvas canvas) {
+        //getting the bound of view for setting background
+        float left = getPaddingLeft() + mShadowBlurRadius;
+        float right = getWidth() - getPaddingRight() - mShadowBlurRadius;
+        float top = getPaddingTop() + (mShadowBlurRadius / 2);
+        float bottom = getHeight() - getPaddingBottom() - mShadowBlurRadius - (mShadowBlurRadius / 2);
+        if (mOrientation == Orientation.HORIZONTAL) {
+            mDividerBelowBackground.setBounds((int) left, (int) mDividerStopY, (int) right, (int) bottom);
+        } else {
+            mDividerBelowBackground.setBounds((int) mDividerStopX, (int) top, (int) right, (int) bottom);
+        }
+        mDividerBelowBackground.draw(canvas);
     }
 
     private void setBackgroundPaint() {
@@ -573,5 +613,23 @@ public class TicketView extends View {
 
     private boolean isJellyBeanAndAbove() {
         return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
+    }
+
+    public Drawable getDividerAboveBackground() {
+        return mDividerAboveBackground;
+    }
+
+    public void setDividerAboveBackground(Drawable background) {
+        this.mDividerAboveBackground = background;
+        initElements();
+    }
+
+    public Drawable getDividerBelowBackground() {
+        return mDividerBelowBackground;
+    }
+
+    public void setDividerBelowBackground(Drawable background) {
+        this.mDividerBelowBackground = background;
+        initElements();
     }
 }
