@@ -9,6 +9,7 @@ import com.vipulasri.ticketview.TicketView
 import kotlinx.android.synthetic.main.content_main.*
 import com.thebluealliance.spectrum.SpectrumDialog
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.support.annotation.NonNull
 import android.util.Log
 import android.view.Menu
@@ -18,11 +19,9 @@ import android.widget.ImageView
 import kotlinx.android.synthetic.main.item_background_options.*
 import kotlinx.android.synthetic.main.item_border_options.*
 import kotlinx.android.synthetic.main.item_divider_options.*
-import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.item_scallop_options.*
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.CompoundButton
 import kotlinx.android.synthetic.main.bottomsheet_ticket_attributes.*
 import kotlinx.android.synthetic.main.item_corner_options.*
 
@@ -83,6 +82,9 @@ class MainActivity : BaseActivity() {
         })
 
         image_background_color.background.setColorFilter(ticketView.backgroundColor, PorterDuff.Mode.SRC_ATOP)
+        image_background_before_divider_color.setImageDrawable(ticketView.backgroundBeforeDivider)
+        image_background_after_divider_color.setImageDrawable(ticketView.backgroundAfterDivider)
+
         image_border_color.background.setColorFilter(ticketView.borderColor, PorterDuff.Mode.SRC_ATOP)
         image_divider_color.background.setColorFilter(ticketView.dividerColor, PorterDuff.Mode.SRC_ATOP)
 
@@ -105,6 +107,14 @@ class MainActivity : BaseActivity() {
 
         image_background_color.setOnClickListener {
             showColorPicker(ticketView.backgroundColor, image_background_color)
+        }
+
+        image_background_before_divider_color.setOnClickListener {
+            showColorPicker(-1, image_background_before_divider_color)
+        }
+
+        image_background_after_divider_color.setOnClickListener {
+            showColorPicker(-1, image_background_after_divider_color)
         }
 
         seekBar_elevation.setOnProgressChangeListener(progressChangeListener)
@@ -223,6 +233,8 @@ class MainActivity : BaseActivity() {
                             R.id.image_border_color -> ticketView.borderColor = color
                             R.id.image_divider_color -> ticketView.dividerColor = color
                             R.id.image_background_color -> ticketView.backgroundColor = color
+                            R.id.image_background_before_divider_color -> ticketView.backgroundBeforeDivider = ColorDrawable(color)
+                            R.id.image_background_after_divider_color -> ticketView.backgroundAfterDivider = ColorDrawable(color)
                             else -> {
                                 //do nothing
                             }

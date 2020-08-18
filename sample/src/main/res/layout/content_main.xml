@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/colorBackground"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.vipulasri.ticketview.TicketView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/ticketView"
-        app:ticketOrientation="vertical"
-        app:ticketElevation="12dp"
-        app:ticketScallopRadius="10dp"
-        app:ticketDividerPadding="0dp"
-        app:ticketShowBorder="false"
-        app:ticketScallopPositionPercent="50"
-        app:ticketShowDivider="true"
-        app:ticketDividerType="dash"/>
+  <com.vipulasri.ticketview.TicketView
+    android:id="@+id/ticketView"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="60dp"
+    android:layout_marginRight="20dp"
+    app:ticketDividerPadding="0dp"
+    app:ticketDividerType="dash"
+    app:ticketElevation="12dp"
+    app:ticketOrientation="vertical"
+    app:ticketScallopPositionPercent="50"
+    app:ticketScallopRadius="10dp"
+    app:ticketShowBorder="false"
+    app:ticketShowDivider="true" />
 
 </RelativeLayout>

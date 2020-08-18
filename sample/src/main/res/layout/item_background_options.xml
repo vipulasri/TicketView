@@ -1,62 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  tools:parentTag="android.widget.LinearLayout">
+
+  <android.support.v7.widget.AppCompatTextView
+    style="@style/Heading"
+    android:text="@string/background" />
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <android.support.v7.widget.AppCompatTextView
-        style="@style/Heading"
-        android:text="@string/background" />
+      style="@style/Label"
+      android:text="@string/elevation" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+      android:id="@+id/seekBar_elevation"
+      style="@style/DiscreteSeekBar"
+      app:dsb_max="24"
+      app:dsb_min="0"
+      app:dsb_value="12" />
 
-        <android.support.v7.widget.AppCompatTextView
-            style="@style/Label"
-            android:text="@string/elevation" />
+  </LinearLayout>
 
-        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-            style="@style/DiscreteSeekBar"
-            android:id="@+id/seekBar_elevation"
-            app:dsb_min="0"
-            app:dsb_max="24"
-            app:dsb_value="12"/>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
-    </LinearLayout>
+    <android.support.v7.widget.AppCompatTextView
+      android:layout_width="80dp"
+      android:layout_height="wrap_content"
+      android:text="@string/color"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+    <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="5dp"
+      android:background="@drawable/bg_oval_border_black"
+      android:padding="1dp">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/color"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+      <ImageView
+        android:id="@+id/image_background_color"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/bg_oval_white" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:padding="1dp"
-            android:background="@drawable/bg_oval_border_black">
+    </RelativeLayout>
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:id="@+id/image_background_color"
-                android:background="@drawable/bg_oval_white"/>
+  </LinearLayout>
 
-        </RelativeLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
-    </LinearLayout>
+    <android.support.v7.widget.AppCompatTextView
+      android:layout_width="80dp"
+      android:layout_height="wrap_content"
+      android:text="@string/color_before_divider"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
-</LinearLayout>
+    <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="5dp"
+      android:background="@drawable/bg_oval_border_black"
+      android:padding="1dp">
+
+      <ImageView
+        android:id="@+id/image_background_before_divider_color"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/bg_oval_white" />
+
+    </RelativeLayout>
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.AppCompatTextView
+      android:layout_width="80dp"
+      android:layout_height="wrap_content"
+      android:text="@string/color_after_divider"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
+
+    <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="5dp"
+      android:background="@drawable/bg_oval_border_black"
+      android:padding="1dp">
+
+      <ImageView
+        android:id="@+id/image_background_after_divider_color"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/bg_oval_white" />
+
+    </RelativeLayout>
+
+  </LinearLayout>
+
+</merge>

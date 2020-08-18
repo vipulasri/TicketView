@@ -34,6 +34,8 @@
     <string name="corners">Corners</string>
     <string name="example">Example</string>
     <string name="background">Background</string>
+    <string name="color_before_divider">Color before Divider</string>
+    <string name="color_after_divider">Color after Divider</string>
 
     <string-array name="divider_type">
         <item>Normal</item>

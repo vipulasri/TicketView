@@ -1,54 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  tools:parentTag="android.widget.LinearLayout">
+
+  <android.support.v7.widget.AppCompatTextView
+    style="@style/Heading"
+    android:text="@string/corners" />
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <android.support.v7.widget.AppCompatTextView
-        style="@style/Heading"
-        android:text="@string/corners" />
+      android:layout_width="80dp"
+      android:layout_height="wrap_content"
+      android:text="@string/type"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+    <android.support.v7.widget.AppCompatSpinner
+      android:id="@+id/spinner_corner_type"
+      android:layout_width="140dp"
+      android:layout_height="wrap_content"
+      android:entries="@array/corner_type"
+      android:spinnerMode="dropdown" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/type"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+  </LinearLayout>
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner_corner_type"
-            android:spinnerMode="dropdown"
-            android:entries="@array/corner_type"/>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
-    </LinearLayout>
+    <android.support.v7.widget.AppCompatTextView
+      style="@style/Label"
+      android:text="@string/radius" />
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="5dp"
-       android:gravity="center_vertical"
-       android:orientation="horizontal">
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+      android:id="@+id/seekBar_corner_radius"
+      style="@style/DiscreteSeekBar"
+      app:dsb_max="40"
+      app:dsb_min="0"
+      app:dsb_value="10" />
 
-       <android.support.v7.widget.AppCompatTextView
-           style="@style/Label"
-           android:text="@string/radius" />
+  </LinearLayout>
 
-       <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-           style="@style/DiscreteSeekBar"
-           android:id="@+id/seekBar_corner_radius"
-           app:dsb_min="0"
-           app:dsb_max="40"
-           app:dsb_value="10"/>
-
-   </LinearLayout>
-
-</LinearLayout>
+</merge>
