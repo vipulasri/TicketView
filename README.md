@@ -31,19 +31,8 @@ For information : checkout [Sample App Code](https://github.com/vipulasri/Ticket
 
 ``` gradle
 dependencies {
-    implementation 'com.vipulasri:ticketview:1.0.7'
+    implementation 'com.vipulasri:ticketview:1.0.9'
 }
-```
-
-**Using Maven**
-
-``` maven
-<dependency>
-    <groupId>com.vipulasri</groupId>
-    <artifactId>ticketview</artifactId>
-    <version>1.0.7</version>
-    <type>pom</type>
-</dependency>
 ```
 
 ### What's New
@@ -167,14 +156,14 @@ If you Watch this repository, GitHub will send you an email every time I publish
         <td>sets elevation to ticket view on android jellybean and above</td>
     </tr>
     <tr>
-       <td>app:ticketBackgroundBelowDivider</td>
+       <td>app:ticketBackgroundBeforeDivider</td>
        <td>none</td>
-       <td>sets background to ticket view below divider</td>
+       <td>sets background to ticket view before divider</td>
     </tr>
     <tr>
-       <td>app:ticketBackgroundAboveDivider</td>
+       <td>app:ticketBackgroundAfterDivider</td>
        <td>none</td>
-       <td>sets background to ticket view above divider</td>
+       <td>sets background to ticket view after divider</td>
     </tr>
     </table>
  
@@ -186,7 +175,7 @@ If you Watch this repository, GitHub will send you an email every time I publish
 [Apps using Ticket View, via AppBrain Stats](https://www.appbrain.com/stats/libraries/details/ticketview/ticketview)
 
 If you're using this library in your app and you'd like to list it here,
-Please let me know via [email](mailto:vipulasri.2007@gmail.com), [pull requests](https://github.com/vipulasri/TicketView/pulls) or [issues](https://github.com/vipulasri/TicketView/issues).
+Please let me know via [email](mailto:me@vipulasri.com), [pull requests](https://github.com/vipulasri/TicketView/pulls) or [issues](https://github.com/vipulasri/TicketView/issues).
 
 ## Special Thanks
 
