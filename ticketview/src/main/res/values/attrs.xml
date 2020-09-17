@@ -32,7 +32,7 @@
         <attr name="ticketElevation" format="dimension" />
         <attr name="ticketBackgroundBeforeDivider" format="reference" />
         <attr name="ticketBackgroundAfterDivider" format="reference" />
-        <attr name="shadowColor" format="color"/>
+        <attr name="ticketShadowColor" format="color"/>
     </declare-styleable>
 
 </resources>

@@ -312,7 +312,7 @@ public class TicketView extends View {
             if (elevation > 0f) {
                 setShadowBlurRadius(elevation);
             }
-            mShadowColor = typedArray.getColor(R.styleable.TicketView_shadowColor, getResources().getColor(android.R.color.black));
+            mShadowColor = typedArray.getColor(R.styleable.TicketView_ticketShadowColor, getResources().getColor(android.R.color.black));
 
             typedArray.recycle();
         }
