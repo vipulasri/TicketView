@@ -607,8 +607,8 @@ public class TicketView extends View {
         return mShadowColor;
     }
 
-    public void setShadowColor(int dividerColor) {
-        this.mShadowColor = dividerColor;
+    public void setShadowColor(int color) {
+        this.mShadowColor = color;
         initElements();
     }
 
