@@ -10,7 +10,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 public class BlurBuilder {
 
     public static Bitmap blur(Context context, Bitmap image , float radius) {
-        if(image ==null || image.isRecycled()) return image;
+        if(image == null || image.isRecycled()) return image;
 
         if (Utils.isJellyBeanAndAbove()) {
             RenderScript rs = RenderScript.create(context);
