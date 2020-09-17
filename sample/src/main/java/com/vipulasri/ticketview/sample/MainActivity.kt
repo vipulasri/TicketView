@@ -82,6 +82,7 @@ class MainActivity : BaseActivity() {
         })
 
         image_background_color.background.setColorFilter(ticketView.backgroundColor, PorterDuff.Mode.SRC_ATOP)
+        image_background_shadow_color.background.setColorFilter(ticketView.shadowColor, PorterDuff.Mode.SRC_ATOP)
         image_background_before_divider_color.setImageDrawable(ticketView.backgroundBeforeDivider)
         image_background_after_divider_color.setImageDrawable(ticketView.backgroundAfterDivider)
 
@@ -107,6 +108,10 @@ class MainActivity : BaseActivity() {
 
         image_background_color.setOnClickListener {
             showColorPicker(ticketView.backgroundColor, image_background_color)
+        }
+
+        image_background_shadow_color.setOnClickListener {
+            showColorPicker(ticketView.shadowColor, image_background_shadow_color)
         }
 
         image_background_before_divider_color.setOnClickListener {
@@ -233,6 +238,7 @@ class MainActivity : BaseActivity() {
                             R.id.image_border_color -> ticketView.borderColor = color
                             R.id.image_divider_color -> ticketView.dividerColor = color
                             R.id.image_background_color -> ticketView.backgroundColor = color
+                            R.id.image_background_shadow_color -> ticketView.shadowColor = color
                             R.id.image_background_before_divider_color -> ticketView.backgroundBeforeDivider = ColorDrawable(color)
                             R.id.image_background_after_divider_color -> ticketView.backgroundAfterDivider = ColorDrawable(color)
                             else -> {
