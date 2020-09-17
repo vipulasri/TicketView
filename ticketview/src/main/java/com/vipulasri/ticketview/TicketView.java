@@ -264,7 +264,7 @@ public class TicketView extends View {
     }
 
     private void generateShadow() {
-        if (isJellyBeanAndAbove() && !isInEditMode()) {
+        if (Utils.isJellyBeanAndAbove() && !isInEditMode()) {
             if (mShadowBlurRadius == 0f) return;
 
             if (mShadow == null) {
@@ -586,7 +586,7 @@ public class TicketView extends View {
     }
 
     public void setTicketElevation(float elevation) {
-        if (!isJellyBeanAndAbove()) {
+        if (!Utils.isJellyBeanAndAbove()) {
             Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
             return;
         }
@@ -595,7 +595,7 @@ public class TicketView extends View {
     }
 
     private void setShadowBlurRadius(float elevation) {
-        if (!isJellyBeanAndAbove()) {
+        if (!Utils.isJellyBeanAndAbove()) {
             Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
             return;
         }
@@ -610,10 +610,6 @@ public class TicketView extends View {
     public void setShadowColor(int color) {
         this.mShadowColor = color;
         initElements();
-    }
-
-    private boolean isJellyBeanAndAbove() {
-        return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
     }
 
     public Drawable getBackgroundBeforeDivider() {

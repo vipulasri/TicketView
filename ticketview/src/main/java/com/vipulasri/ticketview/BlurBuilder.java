@@ -10,10 +10,9 @@ import android.renderscript.ScriptIntrinsicBlur;
 public class BlurBuilder {
 
     public static Bitmap blur(Context context, Bitmap image , float radius) {
-        if(image==null || image.isRecycled())return image;
+        if(image ==null || image.isRecycled()) return image;
 
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
-
+        if (Utils.isJellyBeanAndAbove()) {
             RenderScript rs = RenderScript.create(context);
             ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
             Allocation input = Allocation.createFromBitmap(rs, image);
@@ -24,12 +23,9 @@ public class BlurBuilder {
             output.copyTo(image);
             input.destroy();
             output.destroy();
-
-
-            return image;
-        }else{
-            return image;
         }
+
+        return image;
     }
 
 }
