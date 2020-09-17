@@ -280,17 +280,8 @@ public class TicketView extends View {
             if (mShowBorder) {
                 c.drawPath(mPath, mShadowPaint);
             }
-            RenderScript rs = RenderScript.create(getContext());
-            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8(rs));
-            Allocation input = Allocation.createFromBitmap(rs, mShadow);
-            Allocation output = Allocation.createTyped(rs, input.getType());
-            blur.setRadius(mShadowBlurRadius);
-            blur.setInput(input);
-            blur.forEach(output);
-            output.copyTo(mShadow);
-            input.destroy();
-            output.destroy();
-            blur.destroy();
+
+            mShadow = BlurBuilder.blur(getContext(),mShadow,mCornerRadius);
         }
     }
 
