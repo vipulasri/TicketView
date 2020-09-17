@@ -31,7 +31,7 @@ For information : checkout [Sample App Code](https://github.com/vipulasri/Ticket
 
 ``` gradle
 dependencies {
-    implementation 'com.vipulasri:ticketview:1.0.9'
+    implementation 'com.vipulasri:ticketview:1.1.1'
 }
 ```
 
@@ -164,6 +164,11 @@ If you Watch this repository, GitHub will send you an email every time I publish
        <td>app:ticketBackgroundAfterDivider</td>
        <td>none</td>
        <td>sets background to ticket view after divider</td>
+    </tr>
+    <tr>
+       <td>app:ticketShadowColor</td>
+       <td>black</td>
+       <td>sets shadow to ticket view</td>
     </tr>
     </table>
  
