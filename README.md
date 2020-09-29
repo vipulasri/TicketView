@@ -31,7 +31,7 @@ For information : checkout [Sample App Code](https://github.com/vipulasri/Ticket
 
 ``` gradle
 dependencies {
-    implementation 'com.vipulasri:ticketview:1.1.1'
+    implementation 'com.vipulasri:ticketview:1.1.2'
 }
 ```
 
