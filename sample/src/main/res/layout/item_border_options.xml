@@ -7,7 +7,7 @@
   android:orientation="vertical"
   tools:parentTag="android.widget.LinearLayout">
 
-  <android.support.v7.widget.AppCompatTextView
+  <androidx.appcompat.widget.AppCompatTextView
     style="@style/Heading"
     android:text="@string/border" />
 
@@ -17,13 +17,13 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
       android:layout_width="80dp"
       android:layout_height="wrap_content"
       android:text="@string/enable"
       android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
-    <android.support.v7.widget.AppCompatCheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
       android:id="@+id/checkbox_show_border"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content" />
@@ -37,7 +37,7 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
       android:layout_width="80dp"
       android:layout_height="wrap_content"
       android:text="@string/width"
@@ -59,7 +59,7 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
       android:layout_width="80dp"
       android:layout_height="wrap_content"
       android:text="@string/color"

@@ -1,6 +1,6 @@
 package com.vipulasri.ticketview.sample
 
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.view.*
 
 fun inflateView(@LayoutRes layoutResId: Int, parent: ViewGroup, attachToRoot: Boolean): View {
