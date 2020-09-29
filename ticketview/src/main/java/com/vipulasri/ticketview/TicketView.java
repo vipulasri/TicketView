@@ -272,13 +272,14 @@ public class TicketView extends View {
             } else {
                 mShadow.eraseColor(TRANSPARENT);
             }
-            Canvas c = new Canvas(mShadow);
-            c.drawPath(mPath, mShadowPaint);
+
+            Canvas canvas = new Canvas(mShadow);
+            canvas.drawPath(mPath, mShadowPaint);
             if (mShowBorder) {
-                c.drawPath(mPath, mShadowPaint);
+                canvas.drawPath(mPath, mShadowPaint);
             }
 
-            mShadow = BlurBuilder.blur(getContext(),mShadow,mCornerRadius);
+            mShadow = BlurBuilder.blur(getContext(), mShadow, mShadowBlurRadius);
         }
     }
 
