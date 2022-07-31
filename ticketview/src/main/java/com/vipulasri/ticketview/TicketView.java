@@ -115,17 +115,18 @@ public class TicketView extends View {
         }
         canvas.drawPath(mPath, mBackgroundPaint);
         canvas.clipPath(mPath);
-        if (mShowBorder) {
-            canvas.drawPath(mPath, mBorderPaint);
-        }
-        if (mShowDivider) {
-            canvas.drawLine(mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY, mDividerPaint);
-        }
+
         if (mBackgroundAfterDivider != null) {
             setTicketBackgroundAfterDivider(canvas);
         }
         if (mBackgroundBeforeDivider != null) {
             setTicketBackgroundBeforeDivider(canvas);
+        }
+        if (mShowBorder) {
+            canvas.drawPath(mPath, mBorderPaint);
+        }
+        if (mShowDivider) {
+            canvas.drawLine(mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY, mDividerPaint);
         }
     }
 
